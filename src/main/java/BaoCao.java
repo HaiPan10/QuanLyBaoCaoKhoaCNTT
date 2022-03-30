@@ -1,10 +1,10 @@
 public class BaoCao {
 
-	private int maBaoCao;
+	private int maBaoCao;//comment
 
-	private String tenBaoCao;
+	private String tenBaoCao;//anti comtro
 
-	private String[] chuoiLink;
+	private String[] chuoiLink;//anti comtro
 
 	private Date ngayBaoCao;
 
