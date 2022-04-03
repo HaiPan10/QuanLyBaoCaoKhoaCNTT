@@ -1,10 +1,17 @@
+package BaoCao;
+
+import ConNguoi.GiangVien;
+import ConNguoi.SinhVien;
+
+import java.util.Date;
+
 public class BaoCao {
 
-	private int maBaoCao;//comment
+	private int maBaoCao;
 
-	private String tenBaoCao;//anti comtro
+	private String tenBaoCao;
 
-	private String[] chuoiLink;//anti comtro
+	private String[] chuoiLink;
 
 	private Date ngayBaoCao;
 
