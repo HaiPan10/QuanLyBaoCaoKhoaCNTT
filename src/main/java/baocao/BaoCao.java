@@ -1,7 +1,7 @@
-package BaoCao;
+package baocao;
 
-import ConNguoi.GiangVien;
-import ConNguoi.SinhVien;
+import connguoi.GiangVien;
+import connguoi.SinhVien;
 
 import java.util.Date;
 
@@ -20,8 +20,6 @@ public class BaoCao {
 	private double diemBaoCao;
 
 	private SinhVien[] sinhVienThucHien;
-
-	private static int dem = 0;
 
 	public void hienThiSinhVien() {
 

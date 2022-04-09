@@ -1,6 +1,6 @@
-package HoiDong;
+package hoidong;
 
-import ConNguoi.GiangVien;
+import connguoi.GiangVien;
 
 public class ThanhVienHoiDong extends GiangVien {
 

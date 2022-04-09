@@ -1,6 +1,6 @@
-package HoiDong;
+package hoidong;
 
-import BaoCao.BaoCaoKhoaLuan;
+import baocao.BaoCaoKhoaLuan;
 
 public class HoiDong {
 

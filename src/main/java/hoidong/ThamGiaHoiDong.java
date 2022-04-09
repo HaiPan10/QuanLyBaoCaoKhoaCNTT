@@ -1,4 +1,4 @@
-package HoiDong;
+package hoidong;
 
 public class ThamGiaHoiDong {
 

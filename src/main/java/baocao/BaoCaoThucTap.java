@@ -1,4 +1,4 @@
-package BaoCao;
+package baocao;
 
 public class BaoCaoThucTap extends BaoCao {
 
