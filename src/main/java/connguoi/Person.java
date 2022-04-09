@@ -15,6 +15,8 @@ public class Person {
 
 	}
 
+	//ĐỂ YÊN MÃ SỐ LẠI CẦN NGHIÊN CỨU THÊM, KHÔNG CẦN LÀM
+	//MÃ SỐ CỦA GIẢNG VIÊN VÀ SINH VIÊN KHÁC NHAU
 	public Person(String ten, String gioiTinh, Date namSinh){
 		this.hoTen = ten;
 		this.gioiTinh = gioiTinh;
