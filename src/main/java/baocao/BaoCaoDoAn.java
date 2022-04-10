@@ -1,5 +1,5 @@
 package baocao;
 
-public class BaoCaoDoAn extends PhanMemTurnitin {
+public class BaoCaoDoAn extends BaoCao {
 
 }
