@@ -11,10 +11,12 @@ public class GiangVien extends Person {
 
 	}
 
-	public GiangVien(String ten, String gioiTinh, String namSinh) throws ParseException {
+	public GiangVien(String ten, String gioiTinh, String namSinh, String hh, String hv) throws ParseException {
 		super(ten,gioiTinh,namSinh);
-
+		this.hocHam = hh;
+		this.hocVi = hv;
 	}
+	
 
 	public String getHocHam() {
 		return hocHam;
