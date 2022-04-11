@@ -16,20 +16,21 @@ public class Person {
 	private Date namSinh;
 	public static Scanner sc = new Scanner(System.in);
 
-	public Person() throws FileNotFoundException {
-
+	public Person(int maSo){
+		this.maSo = maSo;
 	}
 
 	//ĐỂ YÊN MÃ SỐ LẠI CẦN NGHIÊN CỨU THÊM, KHÔNG CẦN LÀM
 	//MÃ SỐ CỦA GIẢNG VIÊN VÀ SINH VIÊN KHÁC NHAU
-	public Person(String ten, String gioiTinh, Date namSinh) throws FileNotFoundException {
+	public Person(int ma,String ten, String gioiTinh, Date namSinh) throws FileNotFoundException {
+		this(ma);
 		this.hoTen = ten;
 		this.gioiTinh = gioiTinh;
 		this.namSinh = namSinh;
 	}
 
-	public Person(String ten, String gioiTinh, String namSinh) throws ParseException, FileNotFoundException {
-		this(ten,gioiTinh,F.parse(namSinh));
+	public Person(int ma,String ten, String gioiTinh, String namSinh) throws ParseException, FileNotFoundException {
+		this(ma,ten,gioiTinh,F.parse(namSinh));
 	}
 
 	public void nhap() throws ParseException {
@@ -41,15 +42,16 @@ public class Person {
 		this.namSinh = F.parse(sc.nextLine());
 	}
 
-	File f = new File("src/main/resources/data.txt");
-	try(Scanner s1 = new Scanner(f)){
-		while(s1.hasNext()){
-			String hoTen = s1.nextLine();
-			String gioiTinh = s1.nextLine();
-			String namSinh = F.format(s1.nextLine());
-			s1.nextLine();
-		}
-	}
+	//SỬA CHỖ NÀY GIÙM TAO CÁI :D
+//	File f = new File("src/main/resources/data.txt");
+//	try(Scanner s1 = new Scanner(f)){
+//		while(s1.hasNext()){
+//			String hoTen = s1.nextLine();
+//			String gioiTinh = s1.nextLine();
+//			String namSinh = F.format(s1.nextLine());
+//			s1.nextLine();
+//		}
+//	}
 
 
 	public void hienThi(){

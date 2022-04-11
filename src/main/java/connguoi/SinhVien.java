@@ -1,18 +1,22 @@
 package connguoi;
 
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 
 public class SinhVien extends Person {
 	private int khoaHoc;
 	private String chuyenNganh;
 	private static int dem = 0;
-
-	public SinhVien() {
-
+	{
+		++dem;
 	}
 
-	public SinhVien(String ten, String  gioiTinh, String namSinh, int kh, String cn) throws ParseException {
-		super(ten, gioiTinh, namSinh);
+	public SinhVien() { //Moi lan tao 1 sinh vien se tu dong cap ma so
+		super(dem);
+	}
+
+	public SinhVien(String ten, String  gioiTinh, String namSinh, int kh, String cn) throws ParseException, FileNotFoundException {
+		super(dem,ten, gioiTinh, namSinh);
 		this.khoaHoc = kh;
 		this.chuyenNganh = cn;
 	}
