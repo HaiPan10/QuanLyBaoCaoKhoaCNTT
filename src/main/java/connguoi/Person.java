@@ -42,16 +42,17 @@ public class Person {
 		this.namSinh = F.parse(sc.nextLine());
 	}
 
-	//SỬA CHỖ NÀY GIÙM TAO CÁI :D
-//	File f = new File("src/main/resources/data.txt");
-//	try(Scanner s1 = new Scanner(f)){
-//		while(s1.hasNext()){
-//			String hoTen = s1.nextLine();
-//			String gioiTinh = s1.nextLine();
-//			String namSinh = F.format(s1.nextLine());
-//			s1.nextLine();
-//		}
-//	}
+	public void docFile() throws FileNotFoundException {
+	File f = new File("src/main/resources/data.txt");
+	try (Scanner s1 = new Scanner(f)) {
+		while (s1.hasNext()) {
+			String hoTen = s1.nextLine();
+			String gioiTinh = s1.nextLine();
+			String namSinh = F.format(s1.nextLine());
+			s1.nextLine();
+			}
+		}
+	}
 
 
 	public void hienThi(){
