@@ -54,10 +54,10 @@ public class Person {
 		}
 	}
 
-
 	public void hienThi(){
 		System.out.printf("Ho va ten : %s\nGioi Tinh : %s\nNam Sinh: %s\n", this.hoTen, this.gioiTinh, F.format(namSinh));
 	}
+
 	public String getHoTen() {
 		return hoTen;
 	}

@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class BaoCao {
 	public static final Scanner sc = new Scanner(System.in);
 	public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+	private static int dem = 0;
 	private int maBaoCao;
 	private String tenBaoCao;
 	private String[] chuoiLink;
@@ -19,17 +20,18 @@ public class BaoCao {
 	private double diemBaoCao;
 	private SinhVien[] sinhVienThucHien;
 
+	//Initialization Block
+	{
+		++dem;
+	}
+
 	//==========CONSTRUCTORS==========
 	public BaoCao(){
-
+		this.setMaBaoCao(dem);
 	}
 
-	public BaoCao(int maBaoCao){
-		this.setMaBaoCao(maBaoCao);
-	}
-
-	public BaoCao(int maBaoCao, String ten, GiangVien giangVienHD, SinhVien[] sinhVien){
-		this(maBaoCao);
+	public BaoCao(String ten, GiangVien giangVienHD, SinhVien[] sinhVien){
+		this();
 		this.setTenBaoCao(ten);
 		this.setGiangVienHD(giangVienHD);
 		this.setSinhVienThucHien(sinhVien);
