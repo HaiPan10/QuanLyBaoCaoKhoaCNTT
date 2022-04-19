@@ -11,6 +11,7 @@ public class SinhVien extends Person {
 		++dem;
 	}
 
+	//==========Constructor Methods==========
 	public SinhVien() { //Moi lan tao 1 sinh vien se tu dong cap ma so
 		super(dem);
 	}
@@ -20,7 +21,8 @@ public class SinhVien extends Person {
 		this.khoaHoc = kh;
 		this.chuyenNganh = cn;
 	}
-	
+
+	//==========Getter & Setter==========
 	public int getKhoaHoc() {
 		return khoaHoc;
 	}

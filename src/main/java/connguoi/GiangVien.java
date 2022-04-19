@@ -11,6 +11,7 @@ public class GiangVien extends Person {
 		++dem;
 	}
 
+	//==========Constructor Methods==========
 	public GiangVien(){
 		super(dem);
 	}
@@ -20,8 +21,9 @@ public class GiangVien extends Person {
 		this.hocHam = hh;
 		this.hocVi = hv;
 	}
-	
 
+
+	//==========Getter & Setter==========
 	public String getHocHam() {
 		return hocHam;
 	}

@@ -4,8 +4,8 @@ import connguoi.GiangVien;
 import connguoi.SinhVien;
 import hoidong.HoiDong;
 
-public class BaoCaoKhoaLuan extends BaoCao {
-	private HoiDong danhSach;
+public class BaoCaoKhoaLuan extends ThongTinChung {
+	private HoiDong hoiDong;
 	private String danhGiaPhanBien;
 
 	//==========Constructor Methods==========

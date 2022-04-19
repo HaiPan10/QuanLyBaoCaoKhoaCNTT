@@ -2,10 +2,12 @@ package hoidong;
 
 import baocao.BaoCaoKhoaLuan;
 
+import java.util.List;
+
 public class HoiDong {
 
-	private ThanhVienHoiDong[] thanhVien;
+	private List<ThanhVienHoiDong> thanhVien;
 
-	private BaoCaoKhoaLuan[] danhSachBaoCao;
+	private List<BaoCaoKhoaLuan> danhSachKhoaLuan;
 
 }

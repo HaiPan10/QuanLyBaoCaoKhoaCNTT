@@ -1,24 +1,22 @@
 package baocao;
 
+import cauhinh.CauHinh;
 import connguoi.GiangVien;
 import connguoi.SinhVien;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
+import java.util.List;
 
-public class BaoCao {
-	public static final Scanner sc = new Scanner(System.in);
-	public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+public abstract class BaoCao {
 	private static int dem = 0;
 	private int maBaoCao;
 	private String tenBaoCao;
-	private String[] chuoiLink;
+	private List<String> chuoiLink;
 	private Date ngayBaoCao;
 	private GiangVien giangVienHD;
 	private double diemBaoCao;
-	private SinhVien[] sinhVienThucHien;
+	private List<SinhVien> sinhVienThucHien;
 
 	//Initialization Block
 	{
@@ -30,7 +28,7 @@ public class BaoCao {
 		this.setMaBaoCao(dem);
 	}
 
-	public BaoCao(String ten, GiangVien giangVienHD, SinhVien[] sinhVien){
+	public BaoCao(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
 		this();
 		this.setTenBaoCao(ten);
 		this.setGiangVienHD(giangVienHD);
@@ -54,11 +52,11 @@ public class BaoCao {
 		this.tenBaoCao = tenBaoCao;
 	}
 
-	public String[] getChuoiLink() {
+	public List<String> getChuoiLink() {
 		return chuoiLink;
 	}
 
-	public void setChuoiLink(String[] chuoiLink) {
+	public void setChuoiLink(List<String> chuoiLink) {
 		this.chuoiLink = chuoiLink;
 	}
 
@@ -86,22 +84,25 @@ public class BaoCao {
 		this.diemBaoCao = diemBaoCao;
 	}
 
-	public SinhVien[] getSinhVienThucHien() {
+	public List<SinhVien> getSinhVienThucHien() {
 		return sinhVienThucHien;
 	}
 
-	public void setSinhVienThucHien(SinhVien[] sinhVienThucHien) {
+	public void setSinhVienThucHien(List<SinhVien> sinhVienThucHien) {
 		this.sinhVienThucHien = sinhVienThucHien;
 	}
 
 	//==========BAO CAO METHODS==========
 	public void nhapNgayBaoCao() throws ParseException {
 		System.out.print("Nhap ngay bao cao\n");
-		String ngay = sc.nextLine();
-		this.setNgayBaoCao(F.parse(ngay));
+		String ngay = CauHinh.sc.nextLine();
+		this.setNgayBaoCao(CauHinh.F.parse(ngay));
 	}
 
-	public void nhapDiem(double diem){
+	public void nhapDiem(){
+		double diem = 0;
+		System.out.println("Nhap diem: ");
+		diem = Double.parseDouble(CauHinh.sc.nextLine());
 		this.setDiemBaoCao(diem);
 	}
 

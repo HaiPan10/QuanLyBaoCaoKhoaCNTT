@@ -3,7 +3,7 @@ package baocao;
 import connguoi.GiangVien;
 import connguoi.SinhVien;
 
-public class BaoCaoDoAn extends BaoCao {
+public class BaoCaoDoAn extends ThongTinChung {
 
     //==========Constructor Methods==========
     public BaoCaoDoAn(){
