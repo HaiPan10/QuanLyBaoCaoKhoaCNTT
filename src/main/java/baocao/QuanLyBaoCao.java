@@ -56,4 +56,14 @@ public class QuanLyBaoCao {
             System.out.println("ERROR");
         }
     }
+
+    public void xuatDanhSach(String instance) throws ClassNotFoundException {
+        Class c = Class.forName(instance);
+        System.out.printf("DANH SACH LOP %s\n", instance);
+        for(BaoCao baoCao : danhSach){
+            if(c.isInstance(baoCao)){
+                baoCao.hienThi();
+            }
+        }
+    }
 }

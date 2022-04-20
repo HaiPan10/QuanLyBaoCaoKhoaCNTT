@@ -12,7 +12,7 @@ public abstract class BaoCao {
 	private static int dem = 0;
 	private int maBaoCao;
 	private String tenBaoCao;
-	private List<String> chuoiLink;
+	private String chuoiLink;
 	private Date ngayBaoCao;
 	private GiangVien giangVienHD;
 	private double diemBaoCao;
@@ -33,6 +33,7 @@ public abstract class BaoCao {
 		this.setTenBaoCao(ten);
 		this.setGiangVienHD(giangVienHD);
 		this.setSinhVienThucHien(sinhVien);
+		this.diemBaoCao = -1;
 	}
 
 	//==========GETTER & SETTER METHODS==========
@@ -52,11 +53,11 @@ public abstract class BaoCao {
 		this.tenBaoCao = tenBaoCao;
 	}
 
-	public List<String> getChuoiLink() {
+	public String getChuoiLink() {
 		return chuoiLink;
 	}
 
-	public void setChuoiLink(List<String> chuoiLink) {
+	public void setChuoiLink(String chuoiLink) {
 		this.chuoiLink = chuoiLink;
 	}
 
@@ -106,16 +107,24 @@ public abstract class BaoCao {
 		this.setDiemBaoCao(diem);
 	}
 
-	public void nhapThongTin(){
-		System.out.print("Nhap vao ten bao cao: ");
-
+	public void nhapChuoiLink(){
+		System.out.print("Nhap vao chuoi link: ");
+		this.setChuoiLink(CauHinh.sc.nextLine());
 	}
 
-	public void hienThiSinhVien() {
-
-	}
-
-	public void hienThiChuoiLink() {
-
+	public void hienThi(){
+		System.out.printf("Ma bao cao: %d\nTen bao cao: %s\nGiang vien huong dan: %s\n",
+				this.maBaoCao,this.tenBaoCao, this.giangVienHD.getHoTen());
+		for(int i = 0; i < sinhVienThucHien.size(); i++){
+			System.out.printf("Sinh vien %d: %s\n", i + 1, sinhVienThucHien.get(i).getHoTen());
+		}
+		//Thong tin co the khong duoc cung cap
+		if(this.chuoiLink != null)
+			System.out.printf("Chuoi link: %s\n", this.chuoiLink);
+		if(this.ngayBaoCao != null)
+			System.out.printf("Ngay bao cao: %s", CauHinh.F.format(this.ngayBaoCao));
+		if(this.diemBaoCao > -1){
+			System.out.printf("Diem bao cao: %.1f", this.diemBaoCao);
+		}
 	}
 }

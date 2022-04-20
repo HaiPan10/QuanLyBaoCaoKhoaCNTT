@@ -1,7 +1,10 @@
 package baocao;
 
+import cauhinh.CauHinh;
 import connguoi.GiangVien;
 import connguoi.SinhVien;
+
+import java.util.List;
 
 public abstract class ThongTinChung extends BaoCao {
     private double tyLeDaoVan;
@@ -10,9 +13,11 @@ public abstract class ThongTinChung extends BaoCao {
         super();
     }
 
-    public ThongTinChung(String ten, GiangVien giangVienHD, SinhVien[] sinhVien){
+    public ThongTinChung(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
         super(ten,giangVienHD,sinhVien);
     }
+
+    //==========Getter & Setter==========
 
     public double getTyLeDaoVan() {
         return tyLeDaoVan;
@@ -20,5 +25,18 @@ public abstract class ThongTinChung extends BaoCao {
 
     public void setTyLeDaoVan(double tyLeDaoVan) {
         this.tyLeDaoVan = tyLeDaoVan;
+    }
+
+    //==========Methods/Behaviors==========
+
+    public void nhapTyLeDaoVan(){
+        System.out.print("Nhap ty le dao van: ");
+        this.tyLeDaoVan = Double.parseDouble(CauHinh.sc.nextLine());
+    }
+
+    @Override
+    public void hienThi() {
+        super.hienThi();
+        System.out.printf("Ty le dao van: %.1f", this.getTyLeDaoVan());
     }
 }
