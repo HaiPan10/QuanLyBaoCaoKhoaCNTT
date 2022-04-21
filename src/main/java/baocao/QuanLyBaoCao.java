@@ -39,9 +39,9 @@ public class QuanLyBaoCao {
         try{
             danhSach.remove(this.timKiem(maBaoCao));
         } catch (NullPointerException | UnsupportedOperationException exception) {
-            System.out.println("Value Not Found");
+            CauHinh.sayNotFound();
         } finally {
-            System.out.println("DONE");
+            CauHinh.sayDone();
         }
     }
 
@@ -52,8 +52,11 @@ public class QuanLyBaoCao {
             baoCao.setTenBaoCao(CauHinh.sc.nextLine());
             baoCao.nhapDiem();
             baoCao.nhapNgayBaoCao();
+            baoCao.nhapChuoiLink();
         } catch (ParseException e) {
-            System.out.println("ERROR");
+            CauHinh.sayError();
+        } finally{
+            CauHinh.sayDone();
         }
     }
 

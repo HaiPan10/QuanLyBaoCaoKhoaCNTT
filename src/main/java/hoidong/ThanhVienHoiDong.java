@@ -1,7 +1,10 @@
 package hoidong;
 
+import baocao.BaoCaoKhoaLuan;
 import connguoi.GiangVien;
-import hoidong.HoiDong;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThanhVienHoiDong {
 
@@ -11,9 +14,18 @@ public class ThanhVienHoiDong {
 
 	private GiangVien thanhVienHoiDong;
 
-	private double diemCham;
+	private List<ChamDiem> danhSachChamDiem;
 
-	private String nhanXet;
+	//==========CONSTRUCTORS==========
+
+	public ThanhVienHoiDong(HoiDong hoiDong, String chucVu, GiangVien giangVien){
+		this.hoiDong = hoiDong;
+		this.chucVu = chucVu;
+		this.thanhVienHoiDong = giangVien;
+		setDanhSachChamDiem(new ArrayList<>());
+	}
+
+	//==========Getter & Setter==========
 
 	public HoiDong getHoiDong() {
 		return hoiDong;
@@ -39,19 +51,17 @@ public class ThanhVienHoiDong {
 		this.thanhVienHoiDong = thanhVienHoiDong;
 	}
 
-	public double getDiemCham() {
-		return diemCham;
+	public List<ChamDiem> getDanhSachChamDiem() {
+		return danhSachChamDiem;
 	}
 
-	public void setDiemCham(double diemCham) {
-		this.diemCham = diemCham;
+	public void setDanhSachChamDiem(List<ChamDiem> danhSachChamDiem) {
+		this.danhSachChamDiem = danhSachChamDiem;
 	}
 
-	public String getNhanXet() {
-		return nhanXet;
-	}
-
-	public void setNhanXet(String nhanXet) {
-		this.nhanXet = nhanXet;
+	//==========Methods/Behaviors==========
+	public void addBaoCaoKhoaLuan(BaoCaoKhoaLuan baoCaoKhoaLuan){
+		ChamDiem cd = new ChamDiem(baoCaoKhoaLuan);
+		this.danhSachChamDiem.add(cd);
 	}
 }
