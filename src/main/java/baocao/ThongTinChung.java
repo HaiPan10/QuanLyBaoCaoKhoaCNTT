@@ -35,8 +35,7 @@ public abstract class ThongTinChung extends BaoCao {
     }
 
     @Override
-    public void hienThi() {
-        super.hienThi();
-        System.out.printf("Ty le dao van: %.1f", this.getTyLeDaoVan());
+    public String toString() {
+        return super.toString() + String.format("Ty le dao van: %.1f\n", this.tyLeDaoVan);
     }
 }

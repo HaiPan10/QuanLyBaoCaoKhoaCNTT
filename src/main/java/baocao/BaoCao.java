@@ -10,6 +10,7 @@ import java.util.List;
 
 public abstract class BaoCao {
 	private static int dem = 0;
+	private static final int MAX_SINHVIEN = 2;
 	private int maBaoCao;
 	private String tenBaoCao;
 	private String chuoiLink;
@@ -112,19 +113,29 @@ public abstract class BaoCao {
 		this.setChuoiLink(CauHinh.sc.nextLine());
 	}
 
-	public void hienThi(){
-		System.out.printf("Ma bao cao: %d\nTen bao cao: %s\nGiang vien huong dan: %s\n",
-				this.maBaoCao,this.tenBaoCao, this.giangVienHD.getHoTen());
-		for(int i = 0; i < sinhVienThucHien.size(); i++){
-			System.out.printf("Sinh vien %d: %s\n", i + 1, sinhVienThucHien.get(i).getHoTen());
+	public String getTenSinhVienThucHien(){
+		StringBuilder sb = new StringBuilder();
+		for(SinhVien sv : this.sinhVienThucHien){
+			sb.append(sv.getHoTen());
+			if(this.sinhVienThucHien.indexOf(sv) != this.sinhVienThucHien.size() - 1){
+				sb.append(", ");
+			}
 		}
-		//Thong tin co the khong duoc cung cap
-		if(this.chuoiLink != null)
-			System.out.printf("Chuoi link: %s\n", this.chuoiLink);
-		if(this.ngayBaoCao != null)
-			System.out.printf("Ngay bao cao: %s", CauHinh.F.format(this.ngayBaoCao));
-		if(this.diemBaoCao > -1){
-			System.out.printf("Diem bao cao: %.1f", this.diemBaoCao);
-		}
+		return sb.toString();
+	}
+
+	//Overloading getNgayBaoCao
+	public String getNgayBaoCao(Date ngay){
+		if(ngay == null)
+			return null;
+		return CauHinh.F.format(ngay);
+	}
+
+	public String toString(){
+		return String.format("Ma bao cao: %d\nTen bao cao: %s\nChuoi link: %s\nNgay bao cao: %s\n" +
+				"Sinh vien thuc hien: %s\nGiang vien huong dan: %s\n" +
+				"Diem bao cao: %.1f\n",this.maBaoCao, this.tenBaoCao, this.chuoiLink, this.getNgayBaoCao(this.ngayBaoCao),
+				this.getTenSinhVienThucHien(),this.giangVienHD.getHoTen(),
+				this.diemBaoCao).replaceAll("null", "N/A");
 	}
 }

@@ -5,6 +5,7 @@ import cauhinh.CauHinh;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuanLyBaoCao {
     private List<BaoCao> danhSach;
@@ -60,13 +61,12 @@ public class QuanLyBaoCao {
         }
     }
 
-    public void xuatDanhSach(String instance) throws ClassNotFoundException {
-        Class c = Class.forName(instance);
-        System.out.printf("DANH SACH LOP %s\n", instance);
-        for(BaoCao baoCao : danhSach){
-            if(c.isInstance(baoCao)){
-                baoCao.hienThi();
-            }
-        }
+    public List<BaoCao> xuatDanhSach(String instance) throws ClassNotFoundException {
+        Class<?> c = Class.forName(instance);
+        return this.danhSach.stream().filter(c::isInstance).collect(Collectors.toList());
+    }
+
+    public void hienThiDanhSach(String instance) throws ClassNotFoundException {
+        this.xuatDanhSach(instance).forEach(baoCao->System.out.println(baoCao.toString()));
     }
 }

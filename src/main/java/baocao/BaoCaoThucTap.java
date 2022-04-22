@@ -29,8 +29,7 @@ public class BaoCaoThucTap extends BaoCao {
 	//==========BaoCaoThucTap Methods/Behaviors==========
 
 	@Override
-	public void hienThi() {
-		super.hienThi();
-		System.out.printf("Danh gia doanh nghiep: %s\n", this.getDanhGiaDoanhNghiep());
+	public String toString() {
+		return super.toString() + String.format("Danh gia doanh nghiep: %s\n", this.danhGiaDoanhNghiep);
 	}
 }

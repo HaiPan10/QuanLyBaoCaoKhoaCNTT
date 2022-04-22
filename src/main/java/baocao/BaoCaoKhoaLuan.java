@@ -15,8 +15,9 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 		super();
 	}
 
-	public BaoCaoKhoaLuan(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
+	public BaoCaoKhoaLuan(HoiDong hoiDong,String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
 		super(ten, giangVienHD, sinhVien);
+		this.hoiDong = hoiDong;
 	}
 
 	//==========Getter & Setter==========
@@ -39,8 +40,8 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 	//==========BaoCaoKhoaLuan Methods/Behaviors==========
 
 	@Override
-	public void hienThi() {
-		super.hienThi();
-		System.out.printf("Danh gia phan bien: %s", this.getDanhGiaPhanBien());
+	public String toString() {
+		return super.toString() + String.format("Ten hoi dong quan ly: %s\nDanh gia phan bien: %s\n",
+				this.hoiDong, this.danhGiaPhanBien);
 	}
 }

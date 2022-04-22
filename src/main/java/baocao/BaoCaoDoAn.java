@@ -19,7 +19,7 @@ public class BaoCaoDoAn extends ThongTinChung {
     //==========BaoCaoDoAn Methods/Behaviors==========
 
     @Override
-    public void hienThi() {
-        super.hienThi();
+    public String toString() {
+        return super.toString();
     }
 }
