@@ -1,13 +1,13 @@
 package hoidong;
 
 import baocao.BaoCaoKhoaLuan;
-import chuan.ITimKiemBaoCao;
+import chuan.ITimKiem;
 import connguoi.GiangVien;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThanhVienHoiDong implements ITimKiemBaoCao<ChamDiem> {
+public class ThanhVienHoiDong implements ITimKiem<ChamDiem> {
 
 	private HoiDong hoiDong;
 
@@ -68,6 +68,10 @@ public class ThanhVienHoiDong implements ITimKiemBaoCao<ChamDiem> {
 
 	@Override
 	public ChamDiem timKiem(int maBaoCao) {
+		for(ChamDiem cd : danhSachChamDiem){
+			if(cd.getBaoCao().getMaBaoCao() == maBaoCao)
+				return cd;
+		}
 		return null;
 	}
 }

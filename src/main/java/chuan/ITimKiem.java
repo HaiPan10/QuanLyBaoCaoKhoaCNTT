@@ -1,5 +1,5 @@
 package chuan;
 
-public interface ITimKiemBaoCao <T>{
+public interface ITimKiem<T>{
     T timKiem(int maBaoCao);
 }

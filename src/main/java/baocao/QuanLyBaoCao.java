@@ -1,7 +1,7 @@
 package baocao;
 
 import cauhinh.CauHinh;
-import chuan.ITimKiemBaoCao;
+import chuan.ITimKiem;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class QuanLyBaoCao implements ITimKiemBaoCao<BaoCao> {
+public class QuanLyBaoCao implements ITimKiem<BaoCao> {
     private List<BaoCao> danhSach;
 
     //==========Getter & Setter==========
