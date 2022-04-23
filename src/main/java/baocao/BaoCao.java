@@ -110,6 +110,10 @@ public abstract class BaoCao {
 		this.setDiemBaoCao(diem);
 	}
 
+	public void nhapDiem(double diem){
+		this.diemBaoCao = diem;
+	}
+
 	public void nhapChuoiLink(){
 		System.out.print("Nhap vao chuoi link: ");
 		this.setChuoiLink(CauHinh.sc.nextLine());

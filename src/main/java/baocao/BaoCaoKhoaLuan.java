@@ -48,7 +48,7 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 		StringBuilder sb = new StringBuilder();
 		List<ThanhVienHoiDong> danhSach = hoiDong.getThanhVien();
 		for(ThanhVienHoiDong tv : danhSach){
-			sb.append(tv.getThanhVienHoiDong().getHoTen());
+			sb.append(String.format("%s (%s)",tv.getThanhVienHoiDong().getHoTen(),tv.getChucVu()));
 			if(danhSach.indexOf(tv) < danhSach.size() - 1){
 				sb.append(", ");
 			}
@@ -58,7 +58,7 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 
 	@Override
 	public String toString() {
-		return super.toString() + String.format("Ten hoi dong quan ly: %s\nDanh gia phan bien: %s\n",
+		return super.toString() + String.format("Thanh vien hoi dong quan ly: %s\nDanh gia phan bien: %s\n",
 				this.getTenThanhVien(), this.danhGiaPhanBien).replaceAll("null","N/A");
 	}
 }
