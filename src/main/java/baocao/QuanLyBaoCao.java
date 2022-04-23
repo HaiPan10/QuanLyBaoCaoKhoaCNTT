@@ -1,6 +1,7 @@
 package baocao;
 
 import cauhinh.CauHinh;
+import chuan.ITimKiemBaoCao;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class QuanLyBaoCao {
+public class QuanLyBaoCao implements ITimKiemBaoCao<BaoCao> {
     private List<BaoCao> danhSach;
 
     //==========Getter & Setter==========
@@ -31,6 +32,12 @@ public class QuanLyBaoCao {
         danhSach.add(baoCao);
     }
 
+    @Override
+    /**
+     *
+     * @param maBaoCao
+     * @return BaoCao
+     */
     public BaoCao timKiem(int maBaoCao){
         for(BaoCao baoCao : danhSach){
             if(baoCao.getMaBaoCao() == maBaoCao)

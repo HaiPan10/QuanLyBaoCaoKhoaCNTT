@@ -48,5 +48,6 @@ public class HoiDong {
 
 	public void themBaoCaoKhoaLuan(BaoCaoKhoaLuan baoCao){
 		this.danhSachKhoaLuan.add(baoCao);
+		thanhVien.forEach(tv->tv.addBaoCaoKhoaLuan(baoCao));
 	}
 }
