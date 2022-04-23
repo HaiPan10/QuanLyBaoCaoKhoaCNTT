@@ -12,7 +12,7 @@ public class BaoCaoDoAn extends ThongTinChung {
         super();
     }
 
-    public BaoCaoDoAn(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
+    public BaoCaoDoAn(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien) throws Exception {
         super(ten,giangVienHD,sinhVien);
     }
 
@@ -21,5 +21,10 @@ public class BaoCaoDoAn extends ThongTinChung {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public String loaiBaoCao() {
+        return "Bao Cao Do An";
     }
 }

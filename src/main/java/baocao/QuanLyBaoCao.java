@@ -77,6 +77,41 @@ public class QuanLyBaoCao implements ITimKiemBaoCao<BaoCao> {
         this.xuatDanhSach(instance).forEach(baoCao->System.out.println(baoCao.toString()));
     }
 
+    public void sapXepTheoNgayBaoCao(){
+        this.danhSach.sort((bc1,bc2)->{
+            String loai1 = bc1.getClass().toString();
+            String loai2 = bc2.getClass().toString();
+            if(loai1.equals(loai2)){
+                //Truong hop 1 trong 2 khong bik ngay bao cao
+                if(bc1.getNgayBaoCao() == null)
+                    return -1;
+                else if(bc2.getNgayBaoCao() == null)
+                    return 1;
+                else if(bc1.getNgayBaoCao() == null && bc2.getNgayBaoCao() == null)
+                    return 0;
+                return bc1.getNgayBaoCao().compareTo(bc2.getNgayBaoCao());
+            }
+            return loai1.compareTo(loai2);
+        });
+    }
+
+    public void sapXepTheoTenBaoCao(){
+        this.danhSach.sort((bc1,bc2)->{
+            String loai1 = bc1.getClass().toString();
+            String loai2 = bc2.getClass().toString();
+            if(loai1.equals(loai2)){
+                return bc1.getTenBaoCao().compareTo(bc2.getTenBaoCao());
+            }
+            return loai1.compareTo(loai2);
+        });
+    }
+
+    /**
+     * Overloading BaoCao timKiem(int maBaoCao)
+     * @param ten
+     * @param nbc
+     * @return Danh sach cac bao cao
+     */
     public List<BaoCao> timKiem(String ten, Date nbc){
         return this.danhSach.stream().filter(t ->(t.getTenBaoCao().contains(ten) && t.getNgayBaoCao().compareTo(nbc) == 0)).collect(Collectors.toList());
     }

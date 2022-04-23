@@ -124,6 +124,8 @@ public abstract class BaoCao {
 	 * @return Chuoi bao gom ten cua tung sinh vien thuc hien
 	 */
 	public String getTenSinhVienThucHien(){
+		if(this.sinhVienThucHien == null)
+			return "null";
 		StringBuilder sb = new StringBuilder();
 		for(SinhVien sv : this.sinhVienThucHien){
 			sb.append(sv.getHoTen());
@@ -132,6 +134,12 @@ public abstract class BaoCao {
 			}
 		}
 		return sb.toString();
+	}
+
+	public String getTenGiangVienHD(){
+		if(this.giangVienHD == null)
+			return "null";
+		return this.giangVienHD.getHoTen();
 	}
 
 	/**
@@ -145,11 +153,13 @@ public abstract class BaoCao {
 		return CauHinh.F.format(ngay);
 	}
 
+	public abstract String loaiBaoCao();
+
 	public String toString(){
-		return String.format("Ma bao cao: %d\nTen bao cao: %s\nChuoi link: %s\nNgay bao cao: %s\n" +
+		return String.format("Loai bao cao: %s\nMa bao cao: %d\nTen bao cao: %s\nChuoi link: %s\nNgay bao cao: %s\n" +
 				"Sinh vien thuc hien: %s\nGiang vien huong dan: %s\n" +
-				"Diem bao cao: %.1f\n",this.maBaoCao, this.tenBaoCao, this.chuoiLink, this.getNgayBaoCao(this.ngayBaoCao),
-				this.getTenSinhVienThucHien(),this.giangVienHD.getHoTen(),
+				"Diem bao cao: %.1f\n",this.loaiBaoCao(),this.maBaoCao, this.tenBaoCao, this.chuoiLink,
+				this.getNgayBaoCao(this.ngayBaoCao), this.getTenSinhVienThucHien(),this.getTenGiangVienHD(),
 				this.diemBaoCao).replaceAll("null", "N/A");
 	}
 }

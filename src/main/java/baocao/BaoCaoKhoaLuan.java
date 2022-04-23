@@ -16,7 +16,7 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 		super();
 	}
 
-	public BaoCaoKhoaLuan(HoiDong hoiDong,String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
+	public BaoCaoKhoaLuan(HoiDong hoiDong,String ten, GiangVien giangVienHD, List<SinhVien> sinhVien) throws Exception {
 		super(ten, giangVienHD, sinhVien);
 		this.hoiDong = hoiDong;
 	}
@@ -58,7 +58,12 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 
 	@Override
 	public String toString() {
-		return super.toString() + String.format("Thanh vien hoi dong quan ly: %s\nDanh gia phan bien: %s\n",
+		return super.toString() + String.format("Thanh vien hoi dong khoa luan: %s\nDanh gia phan bien: %s\n",
 				this.getTenThanhVien(), this.danhGiaPhanBien).replaceAll("null","N/A");
+	}
+
+	@Override
+	public String loaiBaoCao() {
+		return "Bao Cao Khoa Luan";
 	}
 }

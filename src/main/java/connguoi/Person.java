@@ -1,5 +1,7 @@
 package connguoi;
 
+import cauhinh.CauHinh;
+
 import java.io.File;
 
 import java.io.FileNotFoundException;
@@ -14,7 +16,6 @@ public abstract class Person {
 	private int maSo;
 	private String gioiTinh;
 	private Date namSinh;
-	public static Scanner sc = new Scanner(System.in);
 
 	//==========Constructor Methods==========
 	public Person(int maSo){
@@ -85,10 +86,10 @@ public abstract class Person {
 
 	public void nhap() throws ParseException {
 		System.out.print("Ho va ten: ");
-		this.hoTen = sc.nextLine();
+		this.hoTen = CauHinh.sc.nextLine();
 		System.out.print("Gioi Tinh : ");
-		this.gioiTinh = sc.nextLine();
+		this.gioiTinh = CauHinh.sc.nextLine();
 		System.out.print("Nam Sinh : ");
-		this.namSinh = F.parse(sc.nextLine());
+		this.namSinh = F.parse(CauHinh.sc.nextLine());
 	}
 }
