@@ -3,6 +3,7 @@ package baocao;
 import connguoi.GiangVien;
 import connguoi.SinhVien;
 import hoidong.HoiDong;
+import hoidong.ThanhVienHoiDong;
 
 import java.util.List;
 
@@ -39,9 +40,25 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 
 	//==========BaoCaoKhoaLuan Methods/Behaviors==========
 
+	/**
+	 * Lay ten cac thanh vien hoi dong
+	 * @return Chuoi ten cac thanh vien hoi dong
+	 */
+	public String getTenThanhVien(){
+		StringBuilder sb = new StringBuilder();
+		List<ThanhVienHoiDong> danhSach = hoiDong.getThanhVien();
+		for(ThanhVienHoiDong tv : danhSach){
+			sb.append(tv.getThanhVienHoiDong().getHoTen());
+			if(danhSach.indexOf(tv) < danhSach.size() - 1){
+				sb.append(", ");
+			}
+		}
+		return sb.toString();
+	}
+
 	@Override
 	public String toString() {
 		return super.toString() + String.format("Ten hoi dong quan ly: %s\nDanh gia phan bien: %s\n",
-				this.hoiDong, this.danhGiaPhanBien);
+				this.getTenThanhVien(), this.danhGiaPhanBien).replaceAll("null","N/A");
 	}
 }

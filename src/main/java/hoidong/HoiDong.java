@@ -10,4 +10,22 @@ public class HoiDong {
 
 	private List<BaoCaoKhoaLuan> danhSachKhoaLuan;
 
+	//==========Getter & Setter==========
+	public List<ThanhVienHoiDong> getThanhVien() {
+		return thanhVien;
+	}
+
+	public void setThanhVien(List<ThanhVienHoiDong> thanhVien) {
+		this.thanhVien = thanhVien;
+	}
+
+	public List<BaoCaoKhoaLuan> getDanhSachKhoaLuan() {
+		return danhSachKhoaLuan;
+	}
+
+	public void setDanhSachKhoaLuan(List<BaoCaoKhoaLuan> danhSachKhoaLuan) {
+		this.danhSachKhoaLuan = danhSachKhoaLuan;
+	}
+
+	//==========Behaviors/Methods==========
 }

@@ -10,7 +10,7 @@ public class ThanhVienHoiDong {
 
 	private HoiDong hoiDong;
 
-	private String chucVu;
+	private ChucVu chucVu;
 
 	private GiangVien thanhVienHoiDong;
 
@@ -18,7 +18,7 @@ public class ThanhVienHoiDong {
 
 	//==========CONSTRUCTORS==========
 
-	public ThanhVienHoiDong(HoiDong hoiDong, String chucVu, GiangVien giangVien){
+	public ThanhVienHoiDong(HoiDong hoiDong, ChucVu chucVu, GiangVien giangVien){
 		this.hoiDong = hoiDong;
 		this.chucVu = chucVu;
 		this.thanhVienHoiDong = giangVien;
@@ -35,11 +35,11 @@ public class ThanhVienHoiDong {
 		this.hoiDong = hoiDong;
 	}
 
-	public String getChucVu() {
+	public ChucVu getChucVu() {
 		return chucVu;
 	}
 
-	public void setChucVu(String chucVu) {
+	public void setChucVu(ChucVu chucVu) {
 		this.chucVu = chucVu;
 	}
 

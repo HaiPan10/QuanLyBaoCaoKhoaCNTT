@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class QuanLyBaoCao {
     private List<BaoCao> danhSach;
 
+    //==========Getter & Setter==========
+
     public QuanLyBaoCao(){
         setDanhSach(new ArrayList<>());
     }
@@ -68,7 +70,7 @@ public class QuanLyBaoCao {
         this.xuatDanhSach(instance).forEach(baoCao->System.out.println(baoCao.toString()));
     }
 
-    public List<BaoCao> timKiemTheoTen(String ten, Date nbc){
-        return this.danhSach.stream().filter(t ->(t.getTenBaoCao().contains(ten) == true && t.getNgayBaoCao().compareTo(nbc) == 0)).collect(Collectors.toList());
+    public List<BaoCao> timKiem(String ten, Date nbc){
+        return this.danhSach.stream().filter(t ->(t.getTenBaoCao().contains(ten) && t.getNgayBaoCao().compareTo(nbc) == 0)).collect(Collectors.toList());
     }
 }

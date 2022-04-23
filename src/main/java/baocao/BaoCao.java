@@ -29,8 +29,10 @@ public abstract class BaoCao {
 		this.setMaBaoCao(dem);
 	}
 
-	public BaoCao(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
+	public BaoCao(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien) throws Exception {
 		this();
+		if(sinhVien.size() > MAX_SINHVIEN)
+			throw new Exception("InvalidData");
 		this.setTenBaoCao(ten);
 		this.setGiangVienHD(giangVienHD);
 		this.setSinhVienThucHien(sinhVien);
@@ -113,6 +115,10 @@ public abstract class BaoCao {
 		this.setChuoiLink(CauHinh.sc.nextLine());
 	}
 
+	/**
+	 *
+	 * @return Chuoi bao gom ten cua tung sinh vien thuc hien
+	 */
 	public String getTenSinhVienThucHien(){
 		StringBuilder sb = new StringBuilder();
 		for(SinhVien sv : this.sinhVienThucHien){
@@ -124,7 +130,11 @@ public abstract class BaoCao {
 		return sb.toString();
 	}
 
-	//Overloading getNgayBaoCao
+	/**
+	 * Overloading của getNgayBaoCao()
+	 * @param ngay
+	 * @return Chuoi ngay thang nam
+	 */
 	public String getNgayBaoCao(Date ngay){
 		if(ngay == null)
 			return null;
