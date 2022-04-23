@@ -68,11 +68,11 @@ public class ThanhVienHoiDong implements ITimKiemBaoCao<Boolean> {
 
 	@Override
 	public ChamDiem timKiem(int maBaoCao) {
-		for(ChamDiem cd  : danhSachChamDiem){
-			if(cd.getBaoCao().getMaBaoCao() == maBaoCao){
-				return cd;
-			}
-		}
+//		for(ChamDiem cd  : danhSachChamDiem){
+//			if(cd.getBaoCao().getMaBaoCao() == maBaoCao){
+//				return cd;
+//			}
+//		}
 		return null;
 	}
 
