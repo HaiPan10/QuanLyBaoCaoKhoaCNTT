@@ -1,5 +1,7 @@
 package connguoi;
 
+import cauhinh.CauHinh;
+
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 
@@ -37,5 +39,14 @@ public class SinhVien extends Person {
 
 	public void setChuyenNganh(String chuyenNganh) {
 		this.chuyenNganh = chuyenNganh;
+	}
+
+	@Override
+	public void nhap() throws ParseException {
+		super.nhap();
+		System.out.print("Nhap vao khoa hoc: ");
+		this.khoaHoc = Integer.parseInt(CauHinh.sc.nextLine());
+		System.out.print("Nhap vao chuyen nganh: ");
+		this.chuyenNganh = CauHinh.sc.nextLine();
 	}
 }

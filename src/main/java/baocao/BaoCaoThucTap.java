@@ -13,7 +13,7 @@ public class BaoCaoThucTap extends BaoCao {
 		super();
 	}
 
-	public BaoCaoThucTap(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
+	public BaoCaoThucTap(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien) throws Exception {
 		super(ten,giangVienHD,sinhVien);
 	}
 
@@ -31,5 +31,10 @@ public class BaoCaoThucTap extends BaoCao {
 	@Override
 	public String toString() {
 		return super.toString() + String.format("Danh gia doanh nghiep: %s\n", this.danhGiaDoanhNghiep);
+	}
+
+	@Override
+	public String loaiBaoCao() {
+		return "Bao Cao Thuc Tap";
 	}
 }

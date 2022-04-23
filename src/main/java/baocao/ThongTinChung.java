@@ -13,7 +13,7 @@ public abstract class ThongTinChung extends BaoCao {
         super();
     }
 
-    public ThongTinChung(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien){
+    public ThongTinChung(String ten, GiangVien giangVienHD, List<SinhVien> sinhVien) throws Exception {
         super(ten,giangVienHD,sinhVien);
     }
 

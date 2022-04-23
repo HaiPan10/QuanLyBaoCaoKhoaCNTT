@@ -14,6 +14,11 @@ public class HoiDong {
 
 	private List<BaoCaoKhoaLuan> danhSachKhoaLuan;
 
+	private static int maHoiDong = 0;
+	{
+		++maHoiDong;
+	}
+
 	//==========Constructor Methods==========
 
 	public HoiDong(){
@@ -22,6 +27,15 @@ public class HoiDong {
 	}
 
 	//==========Getter & Setter==========
+
+	public static int getMaHoiDong() {
+		return maHoiDong;
+	}
+
+	public static void setMaHoiDong(int maHoiDong) {
+		HoiDong.maHoiDong = maHoiDong;
+	}
+
 	public List<ThanhVienHoiDong> getThanhVien() {
 		return thanhVien;
 	}
