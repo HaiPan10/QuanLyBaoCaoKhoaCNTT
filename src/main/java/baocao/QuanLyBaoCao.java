@@ -32,7 +32,6 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
         danhSach.add(baoCao);
     }
 
-    @Override
     /**
      *
      * @param maBaoCao

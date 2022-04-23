@@ -14,9 +14,12 @@ public class HoiDong {
 
 	private List<BaoCaoKhoaLuan> danhSachKhoaLuan;
 
-	private static int maHoiDong = 0;
+	private int maHoiDong;
+
+	private static int dem = 0;
+
 	{
-		++maHoiDong;
+		this.maHoiDong = ++dem;
 	}
 
 	//==========Constructor Methods==========
@@ -28,12 +31,20 @@ public class HoiDong {
 
 	//==========Getter & Setter==========
 
-	public static int getMaHoiDong() {
+	public int getMaHoiDong() {
 		return maHoiDong;
 	}
 
-	public static void setMaHoiDong(int maHoiDong) {
-		HoiDong.maHoiDong = maHoiDong;
+	public void setMaHoiDong(int maHoiDong) {
+		this.maHoiDong = maHoiDong;
+	}
+
+	public static int getDem() {
+		return dem;
+	}
+
+	public static void setDem(int dem) {
+		HoiDong.dem = dem;
 	}
 
 	public List<ThanhVienHoiDong> getThanhVien() {
