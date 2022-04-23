@@ -1,5 +1,6 @@
 package hoidong;
 
+import baocao.BaoCao;
 import baocao.BaoCaoKhoaLuan;
 import cauhinh.CauHinh;
 
@@ -40,12 +41,16 @@ public class ChamDiem {
 
     //==========Methods/Behaviors==========
     public void nhapDiem(){
-        System.out.print("Nhao vao diem: ");
+        System.out.print("Nhap vao diem: ");
         this.setDiemBaoCao(Double.parseDouble(CauHinh.sc.nextLine()));
     }
 
     public void nhapNhanXet(){
         System.out.print("Nhap vao nhan xet: ");
         this.setNhanXet(CauHinh.sc.nextLine());
+    }
+
+    public void chamDiem(BaoCaoKhoaLuan bc){
+        System.out.printf("%s\nDiem: %.1f\nNhan xet: %s\n",this.baoCao, getDiemBaoCao(), getNhanXet());
     }
 }

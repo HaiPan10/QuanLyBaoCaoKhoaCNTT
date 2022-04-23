@@ -4,6 +4,7 @@ import cauhinh.CauHinh;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,9 +41,9 @@ public class QuanLyBaoCao {
         try{
             danhSach.remove(this.timKiem(maBaoCao));
         } catch (NullPointerException | UnsupportedOperationException exception) {
-            CauHinh.sayNotFound();
+            System.out.println("Value Not Found");
         } finally {
-            CauHinh.sayDone();
+            System.out.println("DONE");
         }
     }
 
@@ -53,11 +54,8 @@ public class QuanLyBaoCao {
             baoCao.setTenBaoCao(CauHinh.sc.nextLine());
             baoCao.nhapDiem();
             baoCao.nhapNgayBaoCao();
-            baoCao.nhapChuoiLink();
         } catch (ParseException e) {
-            CauHinh.sayError();
-        } finally{
-            CauHinh.sayDone();
+            System.out.println("ERROR");
         }
     }
 
@@ -68,5 +66,9 @@ public class QuanLyBaoCao {
 
     public void hienThiDanhSach(String instance) throws ClassNotFoundException {
         this.xuatDanhSach(instance).forEach(baoCao->System.out.println(baoCao.toString()));
+    }
+
+    public List<BaoCao> timKiemTheoTen(String ten, Date nbc){
+        return this.danhSach.stream().filter(t ->(t.getTenBaoCao().contains(ten) == true && t.getNgayBaoCao().compareTo(nbc) == 0)).collect(Collectors.toList());
     }
 }
