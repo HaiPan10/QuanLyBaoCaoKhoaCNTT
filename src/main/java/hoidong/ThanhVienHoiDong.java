@@ -66,6 +66,28 @@ public class ThanhVienHoiDong implements ITimKiem<ChamDiem> {
 		this.danhSachChamDiem.add(cd);
 	}
 
+	public void nhapDiem(int maBaoCao){
+		ChamDiem cd = this.timKiem(maBaoCao);
+		if(cd != null){
+			System.out.println(this.chucVu);
+			cd.nhapDiem();
+		}
+	}
+
+	public void nhapNhanXet(int maBaoCao) {
+		ChamDiem cd = this.timKiem(maBaoCao);
+		if (cd != null)
+			cd.nhapNhanXet();
+	}
+
+	public String layNhanXet(int maBaoCao){
+		ChamDiem cd = this.timKiem(maBaoCao);
+		if(cd != null){
+			return cd.getNhanXet();
+		}
+		return "N/A";
+	}
+
 	@Override
 	public ChamDiem timKiem(int maBaoCao) {
 		for(ChamDiem cd : danhSachChamDiem){

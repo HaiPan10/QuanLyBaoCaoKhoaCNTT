@@ -162,4 +162,8 @@ public abstract class BaoCao {
 				this.getNgayBaoCao(this.ngayBaoCao), this.getTenSinhVienThucHien(),this.getTenGiangVienHD(),
 				this.diemBaoCao).replaceAll("null", "N/A");
 	}
+
+	public void sua(){
+
+	}
 }
