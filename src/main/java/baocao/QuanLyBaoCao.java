@@ -2,6 +2,7 @@ package baocao;
 
 import cauhinh.CauHinh;
 import chuan.ITimKiem;
+import hoidong.ChamDiem;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
         danhSach.add(baoCao);
     }
 
-    @Override
     /**
      *
      * @param maBaoCao
@@ -48,7 +48,24 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
 
     public void xoa(int maBaoCao) {
         try{
-            danhSach.remove(this.timKiem(maBaoCao));
+            BaoCao baoCao = this.timKiem(maBaoCao);
+            if(baoCao instanceof BaoCaoKhoaLuan){
+                ((BaoCaoKhoaLuan) baoCao).getHoiDong().getThanhVien().forEach(thanhVienHoiDong -> {
+                    for(ChamDiem cd : thanhVienHoiDong.getDanhSachChamDiem()){
+                        if(cd.getBaoCao().getMaBaoCao() == maBaoCao){
+                            thanhVienHoiDong.getDanhSachChamDiem().remove(cd);
+                            break;
+                        }
+                    }
+                });
+                for(BaoCaoKhoaLuan baoCaoKhoaLuan : ((BaoCaoKhoaLuan)baoCao).getHoiDong().getDanhSachKhoaLuan()){
+                    if(baoCaoKhoaLuan.getMaBaoCao() == maBaoCao){
+                        ((BaoCaoKhoaLuan)baoCao).getHoiDong().getDanhSachKhoaLuan().remove(baoCaoKhoaLuan);
+                        break;
+                    }
+                }
+            }
+            this.danhSach.remove(baoCao);
         } catch (NullPointerException | UnsupportedOperationException exception) {
             System.out.println("Value Not Found");
         } finally {
@@ -58,14 +75,7 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
 
     public void sua(int maBaoCao){
         BaoCao baoCao = this.timKiem(maBaoCao);
-        try{
-            System.out.print("Nhap vao ten bao cao: ");
-            baoCao.setTenBaoCao(CauHinh.sc.nextLine());
-            baoCao.nhapDiem();
-            baoCao.nhapNgayBaoCao();
-        } catch (ParseException e) {
-            System.out.println("ERROR");
-        }
+        baoCao.sua();
     }
 
     public List<BaoCao> xuatDanhSach(String instance) throws ClassNotFoundException {
@@ -114,5 +124,14 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
      */
     public List<BaoCao> timKiem(String ten, Date nbc){
         return this.danhSach.stream().filter(t ->(t.getTenBaoCao().contains(ten) && t.getNgayBaoCao().compareTo(nbc) == 0)).collect(Collectors.toList());
+    }
+
+    public void nhapDiem(int maBaoCao){
+        BaoCao baoCao = this.timKiem(maBaoCao);
+        //BaoCaoKhoaLuan chi duoc quan ly boi hoi dong
+        //Quan ly bao cao khong co quyen chinh sua diem
+        if(!(baoCao instanceof BaoCaoKhoaLuan)){
+            baoCao.nhapDiem();
+        }
     }
 }

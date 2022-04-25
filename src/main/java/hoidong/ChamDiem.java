@@ -49,8 +49,4 @@ public class ChamDiem {
         System.out.print("Nhap vao nhan xet: ");
         this.setNhanXet(CauHinh.sc.nextLine());
     }
-
-    public void chamDiem(BaoCaoKhoaLuan bc){
-        System.out.printf("%s\nDiem: %.1f\nNhan xet: %s\n",this.baoCao, getDiemBaoCao(), getNhanXet());
-    }
 }
