@@ -119,11 +119,29 @@ public class HoiDong implements ITimKiem<BaoCaoKhoaLuan> {
 		return sb.toString();
 	}
 
+	/***
+	 * Kiem tra da co chuc vu do trong HoiDong chua
+	 * @param cv
+	 * @return true neu co / false neu chua co
+	 */
+	public boolean kiemTraChucVu(ChucVu cv){
+		for(ThanhVienHoiDong tv:thanhVien){
+			if(tv.getChucVu().equals(cv))
+				return true;
+		}
+		return false;
+	}
+
 	public String getThongTin(int maBaoCao){
 		StringBuilder sb = new StringBuilder();
 		for(ThanhVienHoiDong tv : this.thanhVien){
 			sb.append(String.format("%s\n",tv.getThongTin(maBaoCao)));
 		}
 		return sb.toString();
+	}
+
+	public boolean isDuThanhVien(){
+		return kiemTraChucVu(ChucVu.CHU_TICH_HOI_DONG) && kiemTraChucVu(ChucVu.THU_KY) &&
+				this.thanhVien.size() >= MIN_THANH_VIEN && this.thanhVien.size() <= MAX_THANH_VIEN;
 	}
 }
