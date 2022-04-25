@@ -96,9 +96,7 @@ public class Main {
             e.printStackTrace();
         }
     }
-    public static void ghiFileGiangVien(){
 
-    }
     public static void main(String[] args) throws FileNotFoundException, ParseException, Exception {
         mainMenu();
         System.out.println("SHUTDOWN SYSTEM");
