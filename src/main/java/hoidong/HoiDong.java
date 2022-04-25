@@ -134,4 +134,12 @@ public class HoiDong implements ITimKiem<BaoCaoKhoaLuan> {
 			System.out.printf("%s\nNhan xet: %s\n", tv.getChucVu(), tv.layNhanXet(maBaoCao).replaceAll("null","N/A"));
 		}
 	}
+
+	public String getThongTin(int maBaoCao){
+		StringBuilder sb = new StringBuilder();
+		for(ThanhVienHoiDong tv : this.thanhVien){
+			sb.append(String.format("%s\n",tv.getThongTin(maBaoCao)));
+		}
+		return sb.toString();
+	}
 }

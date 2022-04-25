@@ -41,23 +41,10 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 
 	//==========BaoCaoKhoaLuan Methods/Behaviors==========
 
-	/**
-	 * Lay ten cac thanh vien hoi dong
-	 * @return Chuoi ten cac thanh vien hoi dong
-	 */
-	public String getTenThanhVien(){
-		StringBuilder sb = new StringBuilder();
-		List<ThanhVienHoiDong> danhSach = hoiDong.getThanhVien();
-		for(ThanhVienHoiDong tv : danhSach){
-			sb.append(String.format("%s\n",tv.getThongTin(this.getMaBaoCao())));
-		}
-		return sb.toString();
-	}
-
 	@Override
 	public String toString() {
 		return super.toString() + String.format("Thanh vien hoi dong khoa luan:\n %s\nDanh gia phan bien: %s\n",
-				this.getTenThanhVien(), this.danhGiaPhanBien).replaceAll("null","N/A");
+				this.hoiDong.getThongTin(this.getMaBaoCao()), this.danhGiaPhanBien).replaceAll("null","N/A");
 	}
 
 	@Override
