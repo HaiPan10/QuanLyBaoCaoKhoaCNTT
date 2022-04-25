@@ -3,8 +3,7 @@ import cauhinh.CauHinh;
 import connguoi.*;
 import hoidong.HoiDong;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +96,35 @@ public class Main {
         }
     }
 
+    public static void ghiFileGiangVien(GiangVien gv) throws FileNotFoundException, ParseException {
+        File f = new File("src/main/resources/giangVien.txt");
+        try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f,true));
+            bw.append(gv.getHoTen());
+            bw.append(gv.getGioiTinh());
+            bw.append(CauHinh.F.format(gv.getNamSinh()));
+            bw.append(gv.getHocHam());
+            bw.append(gv.getHocVi());
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ghiFileSinhVien(SinhVien sv) throws FileNotFoundException, ParseException {
+        File f = new File("src/main/resources/sinhVien.txt");
+        try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f,true));
+            bw.append(sv.getHoTen());
+            bw.append(sv.getGioiTinh());
+            bw.append(CauHinh.F.format(sv.getNamSinh()));
+            bw.append((String.valueOf(sv.getKhoaHoc())));
+            bw.append(sv.getChuyenNganh());
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) throws FileNotFoundException, ParseException, Exception {
         mainMenu();
         System.out.println("SHUTDOWN SYSTEM");
