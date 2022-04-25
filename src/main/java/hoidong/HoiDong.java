@@ -15,14 +15,6 @@ public class HoiDong implements ITimKiem<BaoCaoKhoaLuan> {
 
 	private List<BaoCaoKhoaLuan> danhSachKhoaLuan;
 
-	private int maHoiDong;
-
-	private static int dem = 0;
-
-	{
-		this.maHoiDong = ++dem;
-	}
-
 	//==========Constructor Methods==========
 
 	public HoiDong() {
@@ -31,22 +23,6 @@ public class HoiDong implements ITimKiem<BaoCaoKhoaLuan> {
 	}
 
 	//==========Getter & Setter==========
-
-	public int getMaHoiDong() {
-		return maHoiDong;
-	}
-
-	public void setMaHoiDong(int maHoiDong) {
-		this.maHoiDong = maHoiDong;
-	}
-
-	public static int getDem() {
-		return dem;
-	}
-
-	public static void setDem(int dem) {
-		HoiDong.dem = dem;
-	}
 
 	public List<ThanhVienHoiDong> getThanhVien() {
 		return thanhVien;
@@ -133,6 +109,14 @@ public class HoiDong implements ITimKiem<BaoCaoKhoaLuan> {
 		for(ThanhVienHoiDong tv : this.thanhVien){
 			System.out.printf("%s\nNhan xet: %s\n", tv.getChucVu(), tv.layNhanXet(maBaoCao).replaceAll("null","N/A"));
 		}
+	}
+
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		for(ThanhVienHoiDong thanhVien : this.thanhVien){
+			sb.append(thanhVien).append("\n");
+		}
+		return sb.toString();
 	}
 
 	public String getThongTin(int maBaoCao){

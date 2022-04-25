@@ -97,10 +97,15 @@ public class ThanhVienHoiDong implements ITimKiem<ChamDiem> {
 		return null;
 	}
 
+	public String toString(){
+		GiangVien gv = this.getThanhVienHoiDong();
+		return String.format("%d - %s - Chuc vu: %s",gv.getMaSo(),gv.getHoTen(),this.chucVu);
+	}
+
 	public String getThongTin(int ma){
 		ChamDiem cd = this.timKiem(ma);
 		GiangVien gv = this.getThanhVienHoiDong();
-		return String.format("%d - %s - Chuc vu: %s - Diem: %.1f - Nhan xet: %s",
-				gv.getMaSo(),gv.getHoTen(), this.chucVu, cd.getDiemBaoCao(), cd.getNhanXet());
+		return String.format("%s - Diem: %.1f - Nhan xet: %s",
+				this,cd.getDiemBaoCao(), cd.getNhanXet());
 	}
 }
