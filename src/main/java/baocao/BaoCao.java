@@ -164,6 +164,9 @@ public abstract class BaoCao {
 	}
 
 	public void sua(){
-
+		System.out.print("Nhap vao ten bao cao: ");
+		this.tenBaoCao = CauHinh.sc.nextLine();
+		System.out.print("Nhap vao chuoi link: ");
+		this.chuoiLink = CauHinh.sc.nextLine();
 	}
 }

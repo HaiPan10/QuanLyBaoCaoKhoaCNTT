@@ -89,11 +89,18 @@ public class ThanhVienHoiDong implements ITimKiem<ChamDiem> {
 	}
 
 	@Override
-	public ChamDiem timKiem(int maBaoCao) {
+	public ChamDiem timKiem(int ma) {
 		for(ChamDiem cd : danhSachChamDiem){
-			if(cd.getBaoCao().getMaBaoCao() == maBaoCao)
+			if(cd.getBaoCao().getMaBaoCao() == ma)
 				return cd;
 		}
 		return null;
+	}
+
+	public String getThongTin(int ma){
+		ChamDiem cd = this.timKiem(ma);
+		GiangVien gv = this.getThanhVienHoiDong();
+		return String.format("%d - %s - Chuc vu: %s - Diem: %.1f - Nhan xet: %s",
+				gv.getMaSo(),gv.getHoTen(), this.chucVu, cd.getDiemBaoCao(), cd.getNhanXet());
 	}
 }

@@ -121,9 +121,9 @@ public class HoiDong implements ITimKiem<BaoCaoKhoaLuan> {
 	}
 
 	@Override
-	public BaoCaoKhoaLuan timKiem(int maBaoCao) {
+	public BaoCaoKhoaLuan timKiem(int ma) {
 		for(BaoCaoKhoaLuan baoCao : this.danhSachKhoaLuan){
-			if(baoCao.getMaBaoCao() == maBaoCao)
+			if(baoCao.getMaBaoCao() == ma)
 				return baoCao;
 		}
 		return null;

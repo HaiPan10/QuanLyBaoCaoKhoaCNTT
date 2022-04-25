@@ -35,12 +35,12 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
 
     /**
      *
-     * @param maBaoCao
+     * @param ma
      * @return BaoCao
      */
-    public BaoCao timKiem(int maBaoCao){
+    public BaoCao timKiem(int ma){
         for(BaoCao baoCao : danhSach){
-            if(baoCao.getMaBaoCao() == maBaoCao)
+            if(baoCao.getMaBaoCao() == ma)
                 return baoCao;
         }
         return null; //value not found
@@ -75,7 +75,8 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
 
     public void sua(int maBaoCao){
         BaoCao baoCao = this.timKiem(maBaoCao);
-        baoCao.sua();
+        if(baoCao != null)
+            baoCao.sua();
     }
 
     public List<BaoCao> xuatDanhSach(String instance) throws ClassNotFoundException {
@@ -130,7 +131,7 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
         BaoCao baoCao = this.timKiem(maBaoCao);
         //BaoCaoKhoaLuan chi duoc quan ly boi hoi dong
         //Quan ly bao cao khong co quyen chinh sua diem
-        if(!(baoCao instanceof BaoCaoKhoaLuan)){
+        if(baoCao != null && !(baoCao instanceof BaoCaoKhoaLuan)){
             baoCao.nhapDiem();
         }
     }

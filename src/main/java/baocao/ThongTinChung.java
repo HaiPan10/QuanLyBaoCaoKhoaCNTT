@@ -38,4 +38,10 @@ public abstract class ThongTinChung extends BaoCao {
     public String toString() {
         return super.toString() + String.format("Ty le dao van: %.1f\n", this.tyLeDaoVan);
     }
+
+    @Override
+    public void sua() {
+        super.sua();
+        this.nhapTyLeDaoVan();
+    }
 }

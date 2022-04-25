@@ -1,5 +1,6 @@
 package baocao;
 
+import cauhinh.CauHinh;
 import connguoi.GiangVien;
 import connguoi.SinhVien;
 import hoidong.HoiDong;
@@ -48,22 +49,30 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 		StringBuilder sb = new StringBuilder();
 		List<ThanhVienHoiDong> danhSach = hoiDong.getThanhVien();
 		for(ThanhVienHoiDong tv : danhSach){
-			sb.append(String.format("%s (%s)",tv.getThanhVienHoiDong().getHoTen(),tv.getChucVu()));
-			if(danhSach.indexOf(tv) < danhSach.size() - 1){
-				sb.append(", ");
-			}
+			sb.append(String.format("%s\n",tv.getThongTin(this.getMaBaoCao())));
 		}
 		return sb.toString();
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + String.format("Thanh vien hoi dong khoa luan: %s\nDanh gia phan bien: %s\n",
+		return super.toString() + String.format("Thanh vien hoi dong khoa luan:\n %s\nDanh gia phan bien: %s\n",
 				this.getTenThanhVien(), this.danhGiaPhanBien).replaceAll("null","N/A");
 	}
 
 	@Override
 	public String loaiBaoCao() {
 		return "Bao Cao Khoa Luan";
+	}
+
+	public void nhapDanhGia(){
+		System.out.print("Nhap danh gia phan bien: ");
+		this.danhGiaPhanBien = CauHinh.sc.nextLine();
+	}
+
+	@Override
+	public void sua() {
+		super.sua();
+		nhapDanhGia();
 	}
 }

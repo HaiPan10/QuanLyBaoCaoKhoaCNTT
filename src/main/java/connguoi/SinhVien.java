@@ -8,6 +8,7 @@ import java.text.ParseException;
 public class SinhVien extends Person {
 	private int khoaHoc;
 	private String chuyenNganh;
+	public static final int MAX_LAM_BAO_CAO = 2;
 	private static int dem = 0;
 	{
 		++dem;

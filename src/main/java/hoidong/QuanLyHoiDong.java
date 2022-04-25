@@ -26,9 +26,9 @@ public class QuanLyHoiDong implements ITimKiem<HoiDong> {
 
     //==========QuanLyBaoCao Methods==========
     @Override
-    public HoiDong timKiem(int maHoiDong) {
+    public HoiDong timKiem(int ma) {
         for(HoiDong hd : getDanhSachHoiDong()){
-            if(hd.getMaHoiDong() == maHoiDong)
+            if(hd.getMaHoiDong() == ma)
                 return hd;
         }
         return null;

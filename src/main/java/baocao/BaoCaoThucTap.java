@@ -1,5 +1,6 @@
 package baocao;
 
+import cauhinh.CauHinh;
 import connguoi.GiangVien;
 import connguoi.SinhVien;
 
@@ -36,5 +37,16 @@ public class BaoCaoThucTap extends BaoCao {
 	@Override
 	public String loaiBaoCao() {
 		return "Bao Cao Thuc Tap";
+	}
+
+	public void nhapDanhGia(){
+		System.out.print("Nhap danh gia doanh nghiep: ");
+		this.danhGiaDoanhNghiep = CauHinh.sc.nextLine();
+	}
+
+	@Override
+	public void sua() {
+		super.sua();
+		nhapDanhGia();
 	}
 }
