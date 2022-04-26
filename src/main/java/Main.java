@@ -4,8 +4,10 @@ import connguoi.*;
 import hoidong.HoiDong;
 
 import java.io.*;
+import java.text.Format;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,15 +19,14 @@ public class Main {
     public static List<SinhVien> danhSachSinhVien = new ArrayList<>();
     public static List<GiangVien> danhSachGiangVien = new ArrayList<>();
     public static GiangVien chonGiangVien() {
-        int dem = 0;
         for (GiangVien gv : danhSachGiangVien) {
-            System.out.printf("%d : %s",(++dem), gv.getHoTen());
+            System.out.printf("%d : %s",gv.getMaSo(), gv.getHoTen());
         }
-        System.out.print("Nhap giang vien ban chon : ");
+        System.out.print("Nhap ma giang vien ban chon : ");
         int sgv = Integer.parseInt(CauHinh.sc.nextLine());
-        for(int i = 0; i < danhSachGiangVien.size(); i++){
-            if(danhSachGiangVien.indexOf(i) == sgv)
-                return danhSachGiangVien.get(sgv);
+        for(GiangVien gv : danhSachGiangVien){
+            if(gv.getMaSo() == sgv)
+                return gv;
         }
         return null;
     }
@@ -221,9 +222,11 @@ public class Main {
                     BaoCaoThucTap bctt = new BaoCaoThucTap(tenbc, cgv, chonSinhVien());
                 }
                 case 2 -> {
-                    System.out.print("Nhap ma bao cao ban dang can tim : ");
-                    int mbc = Integer.parseInt(CauHinh.sc.nextLine());
-                    quanLyBaoCao.timKiem(mbc);
+                    System.out.print("Nhap ten bao cao ban dang can tim : ");
+                    String tenbc = CauHinh.sc.nextLine();
+                    System.out.print("Nhap ngay bao cao : ");
+                    String nbc = CauHinh.sc.nextLine();
+                    quanLyBaoCao.timKiem(tenbc, CauHinh.F.parse(nbc));
                 }
                 default -> System.out.println("Ban chon thoat.\n");
             }
@@ -235,7 +238,7 @@ public class Main {
         do{
             System.out.print("""
                     1. Tao Bao Do An Moi
-                    2. Tim Kiem Bao Cao Bang Ma Bao Cao
+                    2. Tim Kiem Bao Cao
                     3. Thoat chuong trinh
                     Moi chon:\s""");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
@@ -247,9 +250,11 @@ public class Main {
                     BaoCaoDoAn bcda = new BaoCaoDoAn(tenbc, cgv ,chonSinhVien());
                 }
                 case 2 -> {
-                    System.out.print("Nhap ma bao cao ban dang can tim : ");
-                    int mbc = Integer.parseInt(CauHinh.sc.nextLine());
-                    quanLyBaoCao.timKiem(mbc);
+                    System.out.print("Nhap ten bao cao ban dang can tim : ");
+                    String tenbc = CauHinh.sc.nextLine();
+                    System.out.print("Nhap ngay bao cao : ");
+                    String nbc = CauHinh.sc.nextLine();
+                    quanLyBaoCao.timKiem(tenbc, CauHinh.F.parse(nbc));
                 }
                 default -> System.out.println("Ban chon thoat.\n");
             }
