@@ -179,10 +179,7 @@ public class Main {
             try{
                 ChucVu cv = chonChucVu();
                 GiangVien gv = chonGiangVien();
-                if(!hoiDong.kiemTraChucVu(cv))
-                    hoiDong.themThanhVienHoiDong(new ThanhVienHoiDong(hoiDong,cv,gv));
-                else
-                    System.out.println("Chuc vu nay da co trong hoi dong.");
+                hoiDong.themThanhVienHoiDong(new ThanhVienHoiDong(hoiDong,cv,gv));
             } catch (IllegalArgumentException exception){
                 CauHinh.sayError();
             }
