@@ -111,11 +111,11 @@ public class Main {
         File f = new File("src/main/resources/giangVien.txt");
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter(f,true));
-            bw.append(gv.getHoTen());
-            bw.append(gv.getGioiTinh());
-            bw.append(CauHinh.F.format(gv.getNamSinh()));
-            bw.append(gv.getHocHam());
-            bw.append(gv.getHocVi());
+            bw.append(gv.getHoTen()).append("\n");
+            bw.append(gv.getGioiTinh()).append("\n");
+            bw.append(CauHinh.F.format(gv.getNamSinh())).append("\n");
+            bw.append(gv.getHocHam()).append("\n");
+            bw.append(gv.getHocVi()).append("\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -126,11 +126,11 @@ public class Main {
         File f = new File("src/main/resources/sinhVien.txt");
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter(f,true));
-            bw.append(sv.getHoTen());
-            bw.append(sv.getGioiTinh());
-            bw.append(CauHinh.F.format(sv.getNamSinh()));
-            bw.append((String.valueOf(sv.getKhoaHoc())));
-            bw.append(sv.getChuyenNganh());
+            bw.append(sv.getHoTen()).append("\n");
+            bw.append(sv.getGioiTinh()).append("\n");
+            bw.append(CauHinh.F.format(sv.getNamSinh())).append("\n");
+            bw.append((String.valueOf(sv.getKhoaHoc()))).append("\n");
+            bw.append(sv.getChuyenNganh()).append("\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -183,7 +183,7 @@ public class Main {
             } catch (IllegalArgumentException exception){
                 CauHinh.sayError();
             }
-            System.out.print("Tiep tuc? 1 : Co | 2 : khong -> ");
+            System.out.print("Tiep tuc? 1 : Co | 0 : khong -> ");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
             if(choose == 0)
                 break;
@@ -195,6 +195,7 @@ public class Main {
         int choose;
         do{
             System.out.print("""
+                    ====================Main Menu====================
                     1. Menu Thuc Tap.
                     2. Menu Do An.
                     3. Menu Khoa Luan.
@@ -214,16 +215,24 @@ public class Main {
                 case 2 -> menuDoAn();
                 case 3 -> menuKhoaLuan();
                 case 4 -> {
-                    SinhVien sv = new SinhVien();
-                    sv.nhap();
-                    themSinhVien(sv);
-                    ghiFileSinhVien(sv);
+                    try {
+                        SinhVien sv = new SinhVien();
+                        sv.nhap();
+                        themSinhVien(sv);
+                        ghiFileSinhVien(sv);
+                    } catch (ParseException e){
+                        CauHinh.sayError();
+                    }
                 }
                 case 5 -> {
-                    GiangVien gv = new GiangVien();
-                    gv.nhap();
-                    themGiangVien(gv);
-                    ghiFileGiangVien(gv);
+                    try {
+                        GiangVien gv = new GiangVien();
+                        gv.nhap();
+                        themGiangVien(gv);
+                        ghiFileGiangVien(gv);
+                    }catch (ParseException e){
+                        CauHinh.sayError();
+                    }
                 }
 
                 case 6 -> quanLyBaoCao.getDanhSach().forEach(System.out::println);
@@ -262,7 +271,6 @@ public class Main {
 
                 default -> System.out.println("Ban chon thoat.\n");
             }
-            System.out.println("==============================");
         }while(choose >= 1 && choose <= 11);
     }
 
@@ -270,6 +278,7 @@ public class Main {
         int choose;
         do{
             System.out.print("""
+                    ====================Menu Thuc Tap====================
                     1. Tao Bao Cao Thuc Tap Moi.
                     2. Xem danh sach bao cao thuc tap.
                     3. Nhap danh gia doanh nghiep.
@@ -319,7 +328,6 @@ public class Main {
                 }
                 default -> System.out.println("Quay ve menu chinh.\n");
             }
-            System.out.println("==============================");
         }while(choose >= 1 && choose <= 6);
     }
 
@@ -327,6 +335,7 @@ public class Main {
         int choose;
         do{
             System.out.print("""
+                    ====================Menu Do An====================
                     1. Tao Bao Cao Do An Moi.
                     2. Xem danh sach bao cao do an.
                     3. Nhap diem.
@@ -380,7 +389,6 @@ public class Main {
                 }
                 default -> System.out.println("Quay ve menu chinh.\n");
             }
-            System.out.println("==============================");
         }while(choose >= 1 && choose <= 6);
     }
 
@@ -388,6 +396,7 @@ public class Main {
         int choose;
         do {
             System.out.print("""
+                    ====================Menu Khoa Luan====================
                     1. Tao bao cao khoa luan.
                     2. Nhap diem.
                     3. Nhap nhan xet.
@@ -482,7 +491,6 @@ public class Main {
                 }
                 default -> System.out.println("Quay ve menu chinh.");
             }
-            System.out.println("==============================");
         }while(choose >= 1 && choose <= 10);
     }
 }
