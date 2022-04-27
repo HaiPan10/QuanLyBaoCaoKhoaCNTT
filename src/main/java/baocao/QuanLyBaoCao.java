@@ -81,7 +81,7 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
 
     public List<BaoCao> xuatDanhSach(String instance) throws ClassNotFoundException {
         Class<?> c = Class.forName(instance);
-        return this.danhSach.stream().filter(c::isInstance).collect(Collectors.toList());
+        return this.danhSach.stream().filter(bc -> c.isInstance(bc)).collect(Collectors.toList());
     }
 
     public void hienThiDanhSach(String instance) throws ClassNotFoundException {
@@ -125,14 +125,5 @@ public class QuanLyBaoCao implements ITimKiem<BaoCao> {
      */
     public List<BaoCao> timKiem(String ten, Date nbc){
         return this.danhSach.stream().filter(t ->(t.getTenBaoCao().contains(ten) && t.getNgayBaoCao().compareTo(nbc) == 0)).collect(Collectors.toList());
-    }
-
-    public void nhapDiem(int maBaoCao){
-        BaoCao baoCao = this.timKiem(maBaoCao);
-        //BaoCaoKhoaLuan chi duoc quan ly boi hoi dong
-        //Quan ly bao cao khong co quyen chinh sua diem
-        if(baoCao != null && !(baoCao instanceof BaoCaoKhoaLuan)){
-            baoCao.nhapDiem();
-        }
     }
 }

@@ -6,11 +6,13 @@ import connguoi.SinhVien;
 import hoidong.HoiDong;
 import hoidong.ThanhVienHoiDong;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaoCaoKhoaLuan extends ThongTinChung {
 	private HoiDong hoiDong;
 	private String danhGiaPhanBien;
+	private static List<SinhVien> daThamGia = new ArrayList<>();
 
 	//==========Constructor Methods==========
 	public BaoCaoKhoaLuan(){
@@ -20,6 +22,7 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 	public BaoCaoKhoaLuan(HoiDong hoiDong,String ten, GiangVien giangVienHD, List<SinhVien> sinhVien) throws Exception {
 		super(ten, giangVienHD, sinhVien);
 		this.hoiDong = hoiDong;
+		daThamGia.addAll(sinhVien);
 	}
 
 	//==========Getter & Setter==========
@@ -43,7 +46,7 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 
 	@Override
 	public String toString() {
-		return super.toString() + String.format("Thanh vien hoi dong khoa luan:\n %s\nDanh gia phan bien: %s\n",
+		return super.toString() + String.format("Thanh vien hoi dong khoa luan:\n%sDanh gia phan bien: %s\n",
 				this.hoiDong.getThongTin(this.getMaBaoCao()), this.danhGiaPhanBien).replaceAll("null","N/A");
 	}
 
@@ -61,5 +64,20 @@ public class BaoCaoKhoaLuan extends ThongTinChung {
 	public void sua() {
 		super.sua();
 		nhapDanhGia();
+	}
+
+	/***
+	 * Kiem soat viec sinh vien da tung tham gia chua
+	 * @param sv
+	 * @return true / false
+	 */
+	public static boolean isDaThamGia(List<SinhVien> sv){
+		for(SinhVien sinhVien : daThamGia){
+			for(SinhVien temp : sv){
+				if(temp == sinhVien)
+					return true;
+			}
+		}
+		return false;
 	}
 }

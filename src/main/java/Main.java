@@ -22,13 +22,15 @@ public class Main {
     public static List<GiangVien> danhSachGiangVien = new ArrayList<>();
     public static GiangVien chonGiangVien() {
         for (GiangVien gv : danhSachGiangVien) {
-            System.out.printf("%d : %s",gv.getMaSo(), gv.getHoTen());
+            System.out.printf("%d : %s\n",gv.getMaSo(), gv.getHoTen());
         }
         System.out.print("Nhap ma giang vien ban chon : ");
         int sgv = Integer.parseInt(CauHinh.sc.nextLine());
         for(GiangVien gv : danhSachGiangVien){
-            if(gv.getMaSo() == sgv)
+            if(gv.getMaSo() == sgv){
+                System.out.println("Chon thanh cong");
                 return gv;
+            }
         }
         return null;
     }
@@ -37,20 +39,22 @@ public class Main {
         int choose;
         List <SinhVien> csv = new ArrayList<>();
         for(SinhVien sv : danhSachSinhVien){
-            System.out.printf("Ma So: %d\nHo va Ten: %s\n", sv.getMaSo(), sv.getHoTen());
+            System.out.printf("%d : %s\n", sv.getMaSo(), sv.getHoTen());
         }
         while(true) {
             System.out.print("Nhap vao ma so cua sinh vien ban chon : ");
             int msv = Integer.parseInt(CauHinh.sc.nextLine());
             for (SinhVien sv : danhSachSinhVien) {
                 if (sv.getMaSo() == msv) {
+                    System.out.println("Chon thanh cong");
                     csv.add(sv);
+                    break;
                 }
             }
             if(csv.size() == MAX_SO_LUONG){
                 break;
             }
-            System.out.print("Tiep tuc chon: YES : 1 - NO : 0");
+            System.out.print("Tiep tuc chon: YES : 1 - NO : 0 -> ");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
             if(choose == 0){
                 break;
@@ -62,7 +66,7 @@ public class Main {
     public static HoiDong chonHoiDong() throws IndexOutOfBoundsException{
         int dem = 0;
         for(HoiDong hoiDong : danhSachHoiDong){
-            System.out.printf("%d) %s",dem,hoiDong);
+            System.out.printf("%d)\n%s",dem,hoiDong);
             ++dem;
         }
         System.out.print("Chon hoi dong: ");
@@ -70,37 +74,30 @@ public class Main {
     }
 
     public static void docFileGiangVien() throws FileNotFoundException {
-        File F = new File("giangVien.txt");
+        File F = new File("src/main/resources/giangVien.txt");
         try(Scanner doc = new Scanner(F)) {
-            if (doc.hasNext()) {
-               String t = doc.nextLine();
-               CauHinh.sc.nextLine();
-               String gt = doc.nextLine();
-               CauHinh.sc.nextLine();
-               String ns = doc.nextLine();
-               CauHinh.sc.nextLine();
-               String hv = doc.nextLine();
-               CauHinh.sc.nextLine();
-               String hh = doc.nextLine();
-               GiangVien ngv = new GiangVien(t, gt, ns, hv, hh);
-               danhSachGiangVien.add(ngv);
+            while (doc.hasNext()) {
+                String t = doc.nextLine();
+                String gt = doc.nextLine();
+                String ns = doc.nextLine();
+                String hv = doc.nextLine();
+                String hh = doc.nextLine();
+                GiangVien ngv = new GiangVien(t, gt, ns, hv, hh);
+                danhSachGiangVien.add(ngv);
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
+
     public static void docFileSinhVien() throws FileNotFoundException {
-        File F = new File("sinhVien.txt");
+        File F = new File("src/main/resources/sinhVien.txt");
         try(Scanner doc = new Scanner(F)) {
-            if (doc.hasNext()) {
+            while (doc.hasNext()) {
                 String t = doc.nextLine();
-                CauHinh.sc.nextLine();
                 String gt = doc.nextLine();
-                CauHinh.sc.nextLine();
                 String ns = doc.nextLine();
-                CauHinh.sc.nextLine();
-                int kh = doc.nextInt();
-                CauHinh.sc.nextLine();
+                int kh = Integer.parseInt(doc.nextLine());
                 String cn = doc.nextLine();
                 SinhVien nsv = new SinhVien(t, gt, ns, kh, cn);
                 danhSachSinhVien.add(nsv);
@@ -139,7 +136,10 @@ public class Main {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) throws FileNotFoundException, ParseException, Exception {
+        docFileSinhVien();
+        docFileGiangVien();
         mainMenu();
         System.out.println("SHUTDOWN SYSTEM");
     }
@@ -176,12 +176,16 @@ public class Main {
         HoiDong hoiDong = new HoiDong();
         while(true){
             int choose;
-            ChucVu cv = chonChucVu();
-            GiangVien gv = chonGiangVien();
-            if(!hoiDong.kiemTraChucVu(cv))
-                hoiDong.themThanhVienHoiDong(new ThanhVienHoiDong(hoiDong,cv,gv));
-            else
-                System.out.println("Chuc vu nay da co trong hoi dong.");
+            try{
+                ChucVu cv = chonChucVu();
+                GiangVien gv = chonGiangVien();
+                if(!hoiDong.kiemTraChucVu(cv))
+                    hoiDong.themThanhVienHoiDong(new ThanhVienHoiDong(hoiDong,cv,gv));
+                else
+                    System.out.println("Chuc vu nay da co trong hoi dong.");
+            } catch (IllegalArgumentException exception){
+                CauHinh.sayError();
+            }
             System.out.print("Tiep tuc? 1 : Co | 2 : khong -> ");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
             if(choose == 0)
@@ -190,7 +194,7 @@ public class Main {
         return hoiDong.isDuThanhVien() ? hoiDong : null;
     }
 
-    public static void mainMenu() throws ParseException, Exception{
+    public static void mainMenu() throws Exception{
         int choose;
         do{
             System.out.print("""
@@ -216,19 +220,52 @@ public class Main {
                     SinhVien sv = new SinhVien();
                     sv.nhap();
                     themSinhVien(sv);
+                    ghiFileSinhVien(sv);
                 }
                 case 5 -> {
                     GiangVien gv = new GiangVien();
                     gv.nhap();
                     themGiangVien(gv);
+                    ghiFileGiangVien(gv);
                 }
 
-                case 6 -> {
-                    quanLyBaoCao.getDanhSach().forEach(System.out::println);
+                case 6 -> quanLyBaoCao.getDanhSach().forEach(System.out::println);
+
+                case 7 -> {
+                    quanLyBaoCao.sapXepTheoTenBaoCao();
+                    System.out.println("Vui long chon xem danh sach de thay ket qua");
+                }
+
+                case 8 -> {
+                    quanLyBaoCao.sapXepTheoNgayBaoCao();
+                    System.out.println("Vui long chon xem danh sach de thay ket qua");
+                }
+
+                case 9 -> {
+                    try {
+                        System.out.print("Nhap vao ten bao cao: ");
+                        String ten = CauHinh.sc.nextLine();
+                        System.out.print("Nhap vao ngay bao cao: ");
+                        Date ngay = CauHinh.F.parse(CauHinh.sc.nextLine());
+                        quanLyBaoCao.timKiem(ten,ngay).forEach(System.out::println);
+                    } catch (NullPointerException | ParseException exception){
+                        CauHinh.sayError();
+                    }
+                }
+
+                case 10 -> {
+                    System.out.print("Nhap vao ma bao cao: ");
+                    quanLyBaoCao.xoa(Integer.parseInt(CauHinh.sc.nextLine()));
+                }
+
+                case 11 -> {
+                    System.out.print("Nhap vao ma bao cao: ");
+                    quanLyBaoCao.sua(Integer.parseInt(CauHinh.sc.nextLine()));
                 }
 
                 default -> System.out.println("Ban chon thoat.\n");
             }
+            System.out.println("==============================");
         }while(choose >= 1 && choose <= 11);
     }
 
@@ -236,10 +273,13 @@ public class Main {
         int choose;
         do{
             System.out.print("""
-                    1. Tao Bao Thuc Tap Moi.
-                    2. Tim Kiem Bao Cao Bang Ma Bao Cao.
-                    3. Xem danh sach bao cao thuc tap.
-                    3. Thoat chuong trinh
+                    1. Tao Bao Cao Thuc Tap Moi.
+                    2. Xem danh sach bao cao thuc tap.
+                    3. Nhap danh gia doanh nghiep.
+                    4. Nhap diem.
+                    5. Nhap ngay bao cao.
+                    6. Nhap chuoi link.
+                    7. Go back.
                     Moi chon:\s""");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
             switch (choose) {
@@ -247,27 +287,56 @@ public class Main {
                     System.out.print("Nhap ten bao cao : ");
                     String tenbc = CauHinh.sc.nextLine();
                     GiangVien cgv = chonGiangVien();
-                    BaoCaoThucTap bctt = new BaoCaoThucTap(tenbc, cgv, chonSinhVien());
+                    List<SinhVien> sv = chonSinhVien();
+                    if(!BaoCaoThucTap.isDaThamGia(sv) && cgv != null && sv.size() > 0){
+                        BaoCaoThucTap bctt = new BaoCaoThucTap(tenbc, cgv, sv);
+                        quanLyBaoCao.them(bctt);
+                        System.out.println("Them thanh cong");
+                    }
+                    else
+                        System.out.println("Them that bai");
                 }
                 case 2 -> {
-                    System.out.print("Nhap ten bao cao ban dang can tim : ");
-                    String tenbc = CauHinh.sc.nextLine();
-                    System.out.print("Nhap ngay bao cao : ");
-                    String nbc = CauHinh.sc.nextLine();
-                    quanLyBaoCao.timKiem(tenbc, CauHinh.F.parse(nbc));
+                    System.out.println("==========DANH SACH BAO CAO THUC TAP==========");
+                    quanLyBaoCao.hienThiDanhSach("baocao.BaoCaoThucTap");
                 }
-                default -> System.out.println("Ban chon thoat.\n");
+                case 3 -> {
+                    BaoCaoThucTap baoCao = (BaoCaoThucTap) chonBaoCao("baocao.BaoCaoThucTap");
+                    if(baoCao != null)
+                        baoCao.nhapDanhGia();
+                }
+                case 4 -> {
+                    BaoCaoThucTap baoCao = (BaoCaoThucTap) chonBaoCao("baocao.BaoCaoThucTap");
+                    if(baoCao != null)
+                        baoCao.nhapDiem();
+                }
+                case 5 -> {
+                    BaoCaoThucTap baoCao = (BaoCaoThucTap) chonBaoCao("baocao.BaoCaoThucTap");
+                    if(baoCao != null)
+                        baoCao.nhapNgayBaoCao();
+                }
+                case 6 -> {
+                    BaoCaoThucTap baoCao = (BaoCaoThucTap) chonBaoCao("baocao.BaoCaoThucTap");
+                    if(baoCao != null)
+                        baoCao.nhapChuoiLink();
+                }
+                default -> System.out.println("Quay ve menu chinh.\n");
             }
-        }while(choose >= 1 && choose <= 3);
+            System.out.println("==============================");
+        }while(choose >= 1 && choose <= 6);
     }
 
     public static void menuDoAn() throws Exception {
         int choose;
         do{
             System.out.print("""
-                    1. Tao Bao Do An Moi
-                    2. Tim Kiem Bao Cao
-                    3. Thoat chuong trinh
+                    1. Tao Bao Cao Do An Moi.
+                    2. Xem danh sach bao cao do an.
+                    3. Nhap diem.
+                    4. Nhap ngay bao cao.
+                    5. Nhap chuoi link.
+                    6. Nhap ty le dao van.
+                    7. Go back.
                     Moi chon:\s""");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
             switch (choose) {
@@ -275,18 +344,47 @@ public class Main {
                     System.out.print("Nhap ten bao cao : ");
                     String tenbc = CauHinh.sc.nextLine();
                     GiangVien cgv = chonGiangVien();
-                    BaoCaoDoAn bcda = new BaoCaoDoAn(tenbc, cgv ,chonSinhVien());
+                    List<SinhVien> sv = chonSinhVien();
+                    if(!BaoCaoDoAn.isDaThamGia(sv) && cgv != null && sv.size() > 0){
+                        BaoCaoDoAn bcda = new BaoCaoDoAn(tenbc, cgv ,sv);
+                        quanLyBaoCao.them(bcda);
+                        System.out.println("Them thanh cong");
+                    }
+                    else
+                        System.out.println("Them that bai");
                 }
                 case 2 -> {
-                    System.out.print("Nhap ten bao cao ban dang can tim : ");
-                    String tenbc = CauHinh.sc.nextLine();
-                    System.out.print("Nhap ngay bao cao : ");
-                    String nbc = CauHinh.sc.nextLine();
-                    quanLyBaoCao.timKiem(tenbc, CauHinh.F.parse(nbc));
+                    System.out.println("==========DANH SACH BAO CAO DO AN==========");
+                    quanLyBaoCao.hienThiDanhSach("baocao.BaoCaoDoAn");
                 }
-                default -> System.out.println("Ban chon thoat.\n");
+                case 3 -> {
+                    BaoCaoDoAn baoCao = (BaoCaoDoAn) chonBaoCao("baocao.BaoCaoDoAn");
+                    if(baoCao != null)
+                        baoCao.nhapDiem();
+                }
+                case 4 -> {
+                    try {
+                        BaoCaoDoAn baoCao = (BaoCaoDoAn) chonBaoCao("baocao.BaoCaoDoAn");
+                        if(baoCao != null)
+                            baoCao.nhapNgayBaoCao();
+                    } catch (ParseException e){
+                        CauHinh.sayError();
+                    }
+                }
+                case 5 -> {
+                    BaoCaoDoAn baoCao = (BaoCaoDoAn) chonBaoCao("baocao.BaoCaoDoAn");
+                    if(baoCao != null)
+                        baoCao.nhapChuoiLink();
+                }
+                case 6 -> {
+                    BaoCaoDoAn baoCao = (BaoCaoDoAn) chonBaoCao("baocao.BaoCaoDoAn");
+                    if(baoCao != null)
+                        baoCao.nhapTyLeDaoVan();
+                }
+                default -> System.out.println("Quay ve menu chinh.\n");
             }
-        }while(choose >= 1 && choose <= 3);
+            System.out.println("==============================");
+        }while(choose >= 1 && choose <= 6);
     }
 
     public static void menuKhoaLuan() throws Exception {
@@ -300,63 +398,94 @@ public class Main {
                     5. Sua diem.
                     6. Sua nhan xet.
                     7. Thanh lap hoi dong.
-                    8. Exit.
-                    """);
+                    8. Xem danh sach bao cao khoa luan.
+                    9. Nhap ngay bao cao.
+                    10. Nhap chuoi link.
+                    11. Exit.
+                    Moi chon:""");
             choose = Integer.parseInt(CauHinh.sc.nextLine());
             switch(choose){
                 case 1 -> {
-                    HoiDong hoiDong = chonHoiDong();
-                    GiangVien giangVien = chonGiangVien();
-                    List<SinhVien> sv = chonSinhVien();
-                    if(giangVien != null && hoiDong != null && sv.size() > 0){
-                        System.out.print("Nhap vao ten bao cao: ");
-                        String ten = CauHinh.sc.nextLine();
-                        BaoCaoKhoaLuan baoCaoKhoaLuan = new BaoCaoKhoaLuan(hoiDong,ten,giangVien,sv);
-                        quanLyBaoCao.them(baoCaoKhoaLuan);
-                        hoiDong.themBaoCaoKhoaLuan(baoCaoKhoaLuan);
+                    try{
+                        HoiDong hoiDong = chonHoiDong();
+                        GiangVien giangVien = chonGiangVien();
+                        List<SinhVien> sv = chonSinhVien();
+                        if(!BaoCaoKhoaLuan.isDaThamGia(sv) && giangVien != null && hoiDong != null && sv.size() > 0){
+                            System.out.print("Nhap vao ten bao cao: ");
+                            String ten = CauHinh.sc.nextLine();
+                            BaoCaoKhoaLuan baoCaoKhoaLuan = new BaoCaoKhoaLuan(hoiDong,ten,giangVien,sv);
+                            quanLyBaoCao.them(baoCaoKhoaLuan);
+                            hoiDong.themBaoCaoKhoaLuan(baoCaoKhoaLuan);
+                            System.out.println("Them thanh cong");
+                        }
+                        else
+                            System.out.println("Them that bai");
+                    } catch (IndexOutOfBoundsException e){
+                        CauHinh.sayError();
                     }
                 }
 
                 case 2 -> {
-                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("BaoCaoKhoaLuan");
-                    assert baoCao != null;
-                    baoCao.getHoiDong().nhapDiem(baoCao.getMaBaoCao());
+                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                    if(baoCao != null)
+                        baoCao.getHoiDong().nhapDiem(baoCao.getMaBaoCao());
                 }
                 case 3 -> {
-                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("BaoCaoKhoaLuan");
-                    assert baoCao != null;
-                    baoCao.getHoiDong().nhapNhanXet(baoCao.getMaBaoCao());
+                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                    if(baoCao != null)
+                        baoCao.getHoiDong().nhapNhanXet(baoCao.getMaBaoCao());
                 }
                 case 4 -> {
-                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("BaoCaoKhoaLuan");
-                    assert baoCao != null;
-                    baoCao.nhapDanhGia();
+                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                    if(baoCao != null)
+                        baoCao.nhapDanhGia();
                 }
                 case 5 -> {
-                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("BaoCaoKhoaLuan");
-                    assert baoCao != null;
-                    HoiDong hoiDong = baoCao.getHoiDong();
-                    System.out.print(hoiDong.getThongTin(baoCao.getMaBaoCao()));
-                    System.out.print("Nhap vao ma giang vien: ");
-                    int ma = Integer.parseInt(CauHinh.sc.nextLine());
-                    hoiDong.suaDiem(baoCao.getMaBaoCao(), ma);
+                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                    if(baoCao != null){
+                        HoiDong hoiDong = baoCao.getHoiDong();
+                        System.out.print(hoiDong.getThongTin(baoCao.getMaBaoCao()));
+                        System.out.print("Nhap vao ma giang vien: ");
+                        int ma = Integer.parseInt(CauHinh.sc.nextLine());
+                        hoiDong.suaDiem(baoCao.getMaBaoCao(), ma);
+                    }
                 }
                 case 6 -> {
-                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("BaoCaoKhoaLuan");
-                    assert baoCao != null;
-                    HoiDong hoiDong = baoCao.getHoiDong();
-                    System.out.print(hoiDong.getThongTin(baoCao.getMaBaoCao()));
-                    System.out.print("Nhap vao ma giang vien: ");
-                    int ma = Integer.parseInt(CauHinh.sc.nextLine());
-                    hoiDong.suaNhanXet(baoCao.getMaBaoCao(), ma);
+                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                    if(baoCao != null){
+                        HoiDong hoiDong = baoCao.getHoiDong();
+                        System.out.print(hoiDong.getThongTin(baoCao.getMaBaoCao()));
+                        System.out.print("Nhap vao ma giang vien: ");
+                        int ma = Integer.parseInt(CauHinh.sc.nextLine());
+                        hoiDong.suaNhanXet(baoCao.getMaBaoCao(), ma);
+                    }
                 }
                 case 7 -> {
                     HoiDong hd = thanhLapHoiDong();
-                    assert hd != null;
-                    themHoiDong(hd);
+                    if(hd != null)
+                        themHoiDong(hd);
+                }
+                case 8 -> {
+                    System.out.println("==========DANH SACH BAO CAO KHOA LUAN==========");
+                    quanLyBaoCao.hienThiDanhSach("baocao.BaoCaoKhoaLuan");
+                }
+                case 9 -> {
+                    try{
+                        BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                        if(baoCao != null)
+                            baoCao.nhapNgayBaoCao();
+                    } catch (ParseException e){
+                        CauHinh.sayError();
+                    }
+                }
+                case 10 -> {
+                    BaoCaoKhoaLuan baoCao = (BaoCaoKhoaLuan) chonBaoCao("baocao.BaoCaoKhoaLuan");
+                    if(baoCao != null)
+                        baoCao.nhapChuoiLink();
                 }
                 default -> System.out.println("Quay ve menu chinh.");
             }
-        }while(choose >= 1 && choose <= 7);
+            System.out.println("==============================");
+        }while(choose >= 1 && choose <= 10);
     }
 }

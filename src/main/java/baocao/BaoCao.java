@@ -105,7 +105,7 @@ public abstract class BaoCao {
 
 	public void nhapDiem(){
 		double diem = 0;
-		System.out.println("Nhap diem: ");
+		System.out.print("Nhap diem: ");
 		diem = Double.parseDouble(CauHinh.sc.nextLine());
 		this.setDiemBaoCao(diem);
 	}
